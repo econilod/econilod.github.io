@@ -1,0 +1,382 @@
+<link rel="manifest" href="manifest.json">
+
+<head>
+  <meta charset="UTF-8">
+  <title>SS Editor</title>
+</head>
+
+<style>
+    /* body.big{ */
+      /* width:300px; */
+      /* transform: scale(0.5) */
+    /* } */
+</style>
+
+<body>
+    <!-- <h1>サンプルPWAサイト</h1> -->
+    
+    <!-- <img src="pwa-logo.png"> -->
+    
+
+    <!-- 上部 -->
+    <form name "top" id="id_select1" action="">
+
+      <!-- 戻る -->
+      <input id = "id_btn_back" type = "button" value="Back" style = "font-size: 200%; width:180px; height:80px;" onclick="onButton_back();" />
+
+      <!-- 消去 -->
+      <input type = "button" value="Del" style = "font-size: 200%; width:120px; height:80px;" onclick="onButton_del();" />
+
+      <!-- コピー -->
+      <input type = "button" value="Copy" style = "font-size: 200%; width:160px; height:80px;" onclick="onButton_copy();" />
+
+      <!-- 分割ポイント -->
+      <input type = "button" value="C_point" style = "font-size: 200%; width:200px; height:80px;" onclick="onButton_c_point();" />
+      
+    </form>
+  
+    
+    <!-- テキストエリア -->
+    <textarea id="id_text_box" name="text_box" type="text" style = "font-size: 150%;" rows="15" cols="60"></textarea>
+       
+
+    <!-- 選択欄１ -->
+    <form name "select1" id="id_select1" action="">
+
+      <!-- グループ変更 -->
+      <input id = "id_btn_group1" type = "button" value="虹ヶ咲" style = "font-size: 200%; width:180px; height:80px;" onclick="onButton_g1();" />
+
+      <!-- キャラ変更 -->
+      <input type = "button" value="▲" style = "font-size: 200%; width:80px; height:80px;" onclick="onButton_u1();" />
+      <input type = "button" value="▼" style = "font-size: 200%; width:80px; height:80px;" onclick="onButton_d1();" />
+
+      <!-- <input name="id_face_txt1" id="id_face_txt1" type="text" value="" />-->
+      <input id = "id_btn_face1" type = "button" value="侑" style = "font-size: 200%; width:350px; height:80px;" onclick="onButton_face1();" />
+
+      <!-- 表情変更 -->
+      <input type = "button" value="◀" style = "font-size: 200%; width:80px; height:80px;" onclick="onButton_l1();" />
+      <input type = "button" value="▶" style = "font-size: 200%; width:80px; height:80px;" onclick="onButton_r1();" />
+      
+    </form>
+
+
+    <!-- 入力欄 -->
+    <form name "form1" id="id_form1" action="">
+      <!-- <input id="btn_kakko1" type = "button" value="「」" onclick="onButton_kakko1();" /> -->
+      <input id = id_btn_kakko1 type = "button" value="「」" style = "font-size: 200%; width:100px; height:80px;" onclick="onButton_kakko1();" />
+
+      <!-- <input name="id_textbox1" id="id_textbox1" type="text" value="" style = "font-size: 150%; width:600px; height:80px;"  /> -->
+      <textarea name="id_textbox1" id="id_textbox1" type="text" value="" style = "font-size: 300%;" rows="1" cols="25" ></textarea>
+
+      <input type = "button" value="追記" style = "font-size: 200%; width:100px; height:80px;" onclick="onButton_w1();" />
+    </form>
+    
+
+
+<!-- ----------------------------------------------------------------------------->
+    <script>
+      //PWA適用js読み込み
+      window.addEventListener('load', function() {
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register("sw.js");
+      }
+      })
+
+      // window.resizeTo(500, 250);
+      
+      //拡大
+      // document.body.classList.add("big")
+      // window.resizeBy(300,1080)
+
+      var c_word = "       *****<<-ここで->>⊂⎛(cV„Ò ᴗ ÓV⎞⊃<<-分割！->>*****"
+
+      var del_tmp = ""
+      var input_back = ""
+      var textbox_back = ""
+
+      //キャラクターデータ
+      //テストデータ
+      var all_cha_data = [
+        ["","","","","","","","","","","G","N","P1","P2","P3"],
+        ["","","","","","","","","","","虹ヶ咲","侑","⎛(cV„Ò ᴗ ÓV⎞","⎛(cV„Ō ᴗ ŌV⎞",""],
+        ["","","","","","","","","","","虹ヶ咲","歩夢","@cﾒ*˶ˆ ᴗ ˆ˵ﾘ","@cﾒ*˘ ᴗ ˘ﾘ",""],
+        ["","","","","","","","","","","虹ヶ咲","しずく","jΣﾐｲ˶º ᴗº˶ﾘ","jΣﾐｲ˶º ^º˶ﾘ",""],
+        ["","","","","","","","","","","Aqours","千歌","从c*・ヮ・§","从c^ヮ^§",""]
+      ]
+
+      var cha_data = [
+        ["侑","⎛(cV„Ò ᴗ ÓV⎞","⎛(cV„Ō ᴗ ŌV⎞",""],
+        ["歩夢","@cﾒ*˶ˆ ᴗ ˆ˵ﾘ","@cﾒ*˘ ᴗ ˘ﾘ",""],
+        ["しずく","jΣﾐｲ˶º ᴗº˶ﾘ","jΣﾐｲ˶º ^º˶ﾘ",""]
+      ]
+
+      var group = ["虹ヶ咲","Aqours"]
+
+      //格納データ　オフセット
+      face_offset = 11
+      cha_offset = 1
+
+      //表示キャラ テンポラリ
+      var face_tmp = "⎛(cV„Ò ᴗ ÓV⎞"
+      var group_name = "虹ヶ咲"
+      var group1_name = "虹ヶ咲"
+      var face1 = "侑"
+      var select_face = ""
+
+      //選択番号
+      var kakko1_num = 0
+      var group_num1 = 0
+      var face_num1 = 0
+      var cha_num1 = 0
+
+      // var face_alltxt = array()
+      // var logue_alltxt = array()
+
+      var kakko1_b_array = ["「","（","　"]
+      var kakko1_a_array = ["」","）","　"]
+      var kakko1_b = kakko1_b_array[0]
+      var kakko1_a = kakko1_a_array[0]
+      var kakko = ""
+
+
+      // const text_box = document.getElementById('id_text_box')
+      // const textbox1 = document.getElementById('id_text_box')
+     
+      //ここにJavaScriptを記述していく
+
+      function reflect_face(cha_num, face_num){
+        
+        //グループ名　一致不一致
+        // if (group_name != group[group_num]){
+        //   grou
+        // }else{
+        //   group_name = group[group_num]
+        // }  
+
+        // for (let i=cha_offset; i<=cha_data.length-1; i++){
+
+        // }
+
+        cha_face = cha_data[cha_num][face_num]
+        // face_tmp = cha_num1.toString() + face_num1.toString()//テスト
+        
+        //テスト
+        // document.getElementById('text_box').value = face_tmp
+
+        return cha_face 
+      }
+
+
+
+
+      //グループ変更１
+      function onButton_g1(){
+        //グループナンバー　循環
+        if (group_num1 < group.length-1){
+          group_num1 += 1
+        }else if(group_num1 == group.length-1){
+          group_num1 = 0
+        }
+
+        i = 1
+        while (all_cha_data[i][face_offset] != ""){
+          if (all_cha_data[i][face_offset] == group[group_num1])
+          for (j = face_offset; j<=all_cha_data[0].length; j++){
+
+          }
+          i += 1
+        }
+
+
+        document.getElementById("id_btn_group1").value = group[group_num1]
+      }
+
+
+
+      //表情変更１
+      //------------------------------------------------------
+      function onButton_l1(){//表情　逆方向
+        if(face_num1 > 0){
+          face_num1 -= 1
+        }else{
+          face_num1 = cha_data[0].length-1
+        }
+
+        //キャラオーバーフロー回避
+        if(cha_data.length - 1 < cha_num1){
+            cha_num1 = cha_name_data[0].size-1
+        }
+
+        //番号をもとにキャラ、表情をセット
+        face1 = cha_data[cha_num1][face_num1]
+        while(face1 == ""){
+          face_num1 -= 1
+          face1 = cha_data[cha_num1][face_num1]
+        }
+        select_face = face1
+        document.getElementById("id_btn_face1").value = face1
+        document.getElementById("id_textbox1").focus()
+      }//----------------------------------------------------
+      function onButton_r1(){//表情　順方向
+        if(cha_data[0].length - 1 > face_num1){
+          face_num1 += 1
+        }else{
+          face_num1 = 0
+        }
+
+        //キャラオーバーフロー回避
+        if(cha_data.length - 1 < cha_num1){
+            cha_num1 = cha_name_data[0].size-1
+        }
+
+        //番号をもとにキャラ、表情をセット
+        face1 = cha_data[cha_num1][face_num1]
+        if(face1 == ""){
+          face_num1 = 0
+          face1 = cha_data[cha_num1][face_num1]
+        }
+        select_face = face1
+        document.getElementById("id_btn_face1").value = face1
+        document.getElementById("id_textbox1").focus()
+      }//----------------------------------------------------
+
+
+      //キャラ変更１
+      //------------------------------------------------------
+      function onButton_u1(){//キャラ　逆方向
+        if (cha_num1 > 0){
+          cha_num1 -= 1
+        }else if (cha_num1 == 0){
+          cha_num1 = cha_data.length-1
+        }
+        face1 = cha_data[cha_num1][face_num1]
+        select_face = face1
+        document.getElementById("id_btn_face1").value = face1
+        document.getElementById("id_textbox1").focus()
+      }//----------------------------------------------------
+      
+      function onButton_d1(){//キャラ　順方向
+        if (cha_data.length-1 > cha_num1){
+          cha_num1 += 1
+        }else if (cha_data.length-1 == cha_num1){
+          cha_num1 = 0
+        }
+        face1 = cha_data[cha_num1][face_num1]
+        select_face = face1
+        document.getElementById("id_btn_face1").value = face1
+        document.getElementById("id_textbox1").focus()
+      }//----------------------------------------------------
+
+
+      //キャラ 選択１
+      function onButton_face1(){
+        select_face = face1
+        document.getElementById("id_btn_face1").value = select_face
+        document.getElementById("id_btn_face1").style.backgroundColor = "#ffffff"
+        document.getElementById("id_textbox1").focus()
+      }
+
+
+
+
+
+
+
+      //------------------------------------------------------------------------
+      //書き込み
+      function onButton_w1(){
+        // var elements = document.getElementById('id_textbox1');
+        var elements = document.getElementById("id_textbox1").value//入力
+        var b_alltext = document.getElementById("id_text_box").value//
+        input_back = elements
+        textbox_back = b_alltext
+
+        var a_alltext = b_alltext//すでに書き込み済みのデータを取り込む
+        if (b_alltext != "") a_alltext = a_alltext + "\n\n" //追記する場合は改行をする
+        var a_alltext = a_alltext + select_face + kakko1_b + elements + kakko1_a//新規内容追加
+
+        // face_alltxt += select_face
+        // logue_alltxt += elements
+
+        document.getElementById("id_text_box").value = a_alltext
+        document.getElementById("id_text_box").scrollTop = document.getElementById("id_text_box").scrollHeight
+        del_tmp = a_alltext
+        
+        //記入欄　初期化
+        document.forms.id_form1.id_textbox1.value = ""
+        //フォーカス
+        // document.getElementById('text_box').focus();
+        document.getElementById("id_textbox1").focus()
+      }
+
+      //Enter
+      // window.document.onkeydown = function(event){
+      //   fi (event.key === 'Enter'){
+      //     // onButton_w1
+      //   }
+      // }
+
+
+      //括弧の選択
+      function onButton_kakko1(){
+        // document.forms.id_form1.btn_kakko1.textContext = "";
+        // btn_kakko1.textContent = ""
+        if (kakko1_b_array.length-1 > kakko1_num){
+          kakko1_num += 1
+        }else{
+          kakko1_num = 0
+        }
+
+        kakko1_b = kakko1_b_array[kakko1_num]
+        kakko1_a = kakko1_a_array[kakko1_num]
+        kakko = kakko1_b + kakko1_a
+
+        document.getElementById("id_btn_kakko1").value = kakko
+        document.getElementById("id_textbox1").focus()
+      }
+
+      //追記前に戻る
+      function onButton_back(){
+        document.getElementById("id_text_box").value = textbox_back
+        document.getElementById("id_textbox1").value = input_back
+        document.getElementById("id_textbox1").focus()
+      }
+
+      //消去
+      function onButton_del(){
+        if (document.getElementById("id_text_box").value != ""){
+          del_tmp = document.getElementById("id_text_box").value
+          document.getElementById("id_text_box").value = ""
+        }else{
+          document.getElementById("id_text_box").value = del_tmp
+          document.getElementById("id_textbox1").focus()
+        }
+      }
+
+      //コピー
+      function onButton_copy(){
+        document.getElementById("id_text_box").select()
+        document.execCommand("copy")
+        document.getElementById("id_textbox1").focus()
+      }
+
+      //分割点　追加
+      function onButton_c_point(){
+        var b_alltext = document.getElementById("id_text_box").value//
+        input_back = ""
+        textbox_back = b_alltext
+
+        var a_alltext = b_alltext//すでに書き込み済みのデータを取り込む
+        if (b_alltext != "") a_alltext = a_alltext + "\n\n" //追記する場合は改行をする
+        var a_alltext = a_alltext + c_word//分割文字列追加
+
+        document.getElementById("id_text_box").value = a_alltext
+        del_tmp = a_alltext
+        
+        //フォーカス
+        document.getElementById("id_textbox1").focus()
+      }
+
+
+    </script>
+</body>
