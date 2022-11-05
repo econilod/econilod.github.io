@@ -3,7 +3,7 @@
     "background_color": "#ffffff",
     "display": "fullscreen",
     "scope": "/",
-    "start_url": "http://localhost:8000",
+    "start_url": "https://econilod.github.io/ssed/",
     "name": "SSEditor",
     "short_name": "SSEd",
     "icons": [
