@@ -1,7 +1,7 @@
 <link rel="manifest" href="manifest.json">
 
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8"/>
   <title>SS Editor</title>
 </head>
 
@@ -22,53 +22,87 @@
     <form name "top" id="id_select1" action="">
 
       <!-- 戻る -->
-      <input id = "id_btn_back" type = "button" value="Back" style = "font-size: 200%; width:180px; height:80px;" onclick="onButton_back();" />
+      <input id = "id_btn_back" type = "button" value="Back" style = "font-size: 200%; width:120px; height:100px;" onclick="onButton_back();" />
 
       <!-- 消去 -->
-      <input type = "button" value="Del" style = "font-size: 200%; width:120px; height:80px;" onclick="onButton_del();" />
+      <input type = "button" value="Del" style = "font-size: 200%; width:90px; height:100px;" onclick="onButton_del();" />
+
+      <!-- 行数　byte -->
+      <input  id="id_rows_byte_txt" type="text" style = "font-size: 200%; width:240px; height:100px;" value="0 行 / 0 byte" disabled/>
 
       <!-- コピー -->
-      <input type = "button" value="Copy" style = "font-size: 200%; width:160px; height:80px;" onclick="onButton_copy();" />
+      <input type = "button" value="Copy" style = "font-size: 200%; width:120px; height:100px;" onclick="onButton_copy();" />
 
       <!-- 分割ポイント -->
-      <input type = "button" value="C_point" style = "font-size: 200%; width:200px; height:80px;" onclick="onButton_c_point();" />
+      <input type = "button" value="C_point" style = "font-size: 200%; width:150px; height:100px;" onclick="onButton_c_point();" />
       
+      <!-- 選択リセット -->
+      <input id = id_btn_reset type = "button" value="選択解除" style = "font-size: 200%; width:180px; height:100px;" onclick="onButton_reset();" />
     </form>
   
     
     <!-- テキストエリア -->
-    <textarea id="id_text_box" name="text_box" type="text" style = "font-size: 150%;" rows="15" cols="60"></textarea>
+    <!-- <textarea id="id_text_box" name="text_box" type="text" style = "font-size: 100%;" accept-charset=”UTF-8” rows="15" cols="120" oninput="onInput_text_box();"></textarea> -->
+    <textarea id="id_text_box" name="text_box" type="text" style = "font-size: 300%; width:960px; height:300px;" accept-charset=”UTF-8” oninput="onInput_text_box();"></textarea>
        
+<!-- ------------------------------------------------------------------------ -->
 
     <!-- 選択欄１ -->
     <form name "select1" id="id_select1" action="">
-
       <!-- グループ変更 -->
-      <input id = "id_btn_group1" type = "button" value="虹ヶ咲" style = "font-size: 200%; width:180px; height:80px;" onclick="onButton_g1();" />
+      <input id = "id_btn_group1" type = "button" value="虹ヶ咲" style = "font-size: 200%; width:160px; height:100px;" onclick="onButton_g1();" />
 
       <!-- キャラ変更 -->
-      <input type = "button" value="▲" style = "font-size: 200%; width:80px; height:80px;" onclick="onButton_u1();" />
-      <input type = "button" value="▼" style = "font-size: 200%; width:80px; height:80px;" onclick="onButton_d1();" />
+      <input type = "button" value="▲" style = "font-size: 200%; width:100px; height:100px;" onclick="onButton_u1();" />
+      <input type = "button" value="▼" style = "font-size: 200%; width:100px; height:100px;" onclick="onButton_d1();" />
 
-      <!-- <input name="id_face_txt1" id="id_face_txt1" type="text" value="" />-->
-      <input id = "id_btn_face1" type = "button" value="侑" style = "font-size: 200%; width:350px; height:80px;" onclick="onButton_face1();" />
+      <!-- 選択 -->
+      <input id = "id_btn_face1" type = "button" value="侑" style = "font-size: 200%; width:380px; height:100px;" onclick="onButton_face1();" />
 
       <!-- 表情変更 -->
-      <input type = "button" value="◀" style = "font-size: 200%; width:80px; height:80px;" onclick="onButton_l1();" />
-      <input type = "button" value="▶" style = "font-size: 200%; width:80px; height:80px;" onclick="onButton_r1();" />
-      
+      <input type = "button" value="◀" style = "font-size: 200%; width:100px; height:100px;" onclick="onButton_l1();" />
+      <input type = "button" value="▶" style = "font-size: 200%; width:100px; height:100px;" onclick="onButton_r1();" />      
     </form>
 
+<!-- ------------------------------------------------------------------------ -->
+
+    <!-- 選択欄２ -->
+    <form name "select2" id="id_select2" action="">
+      <!-- グループ変更 -->
+      <input id = "id_btn_group2" type = "button" value="虹ヶ咲" style = "font-size: 200%; width:160px; height:100px;" onclick="onButton_g2();" />
+
+      <!-- キャラ変更 -->
+      <input type = "button" value="▲" style = "font-size: 200%; width:100px; height:100px;" onclick="onButton_u2();" />
+      <input type = "button" value="▼" style = "font-size: 200%; width:100px; height:100px;" onclick="onButton_d2();" />
+
+      <!-- 選択 -->
+      <input id = "id_btn_face2" type = "button" value="侑" style = "font-size: 200%; width:380px; height:100px;" onclick="onButton_face2();" />
+
+      <!-- 表情変更 -->
+      <input type = "button" value="◀" style = "font-size: 200%; width:100px; height:100px;" onclick="onButton_l2();" />
+      <input type = "button" value="▶" style = "font-size: 200%; width:100px; height:100px;" onclick="onButton_r2();" />
+    </form>
+
+<!-- ------------------------------------------------------------------------ -->
 
     <!-- 入力欄 -->
     <form name "form1" id="id_form1" action="">
       <!-- <input id="btn_kakko1" type = "button" value="「」" onclick="onButton_kakko1();" /> -->
-      <input id = id_btn_kakko1 type = "button" value="「」" style = "font-size: 200%; width:100px; height:80px;" onclick="onButton_kakko1();" />
+      <input id = id_btn_kakko1 type = "button" value="「」" style = "font-size: 200%; width:150px; height:100px;" onclick="onButton_kakko1();" />
 
       <!-- <input name="id_textbox1" id="id_textbox1" type="text" value="" style = "font-size: 150%; width:600px; height:80px;"  /> -->
-      <textarea name="id_textbox1" id="id_textbox1" type="text" value="" style = "font-size: 300%;" rows="1" cols="25" ></textarea>
+      <!-- <textarea name="id_textbox1" id="id_textbox1" type="text" value="" style = "font-size: 300%; height:50px;" rows="1" cols="25" ></textarea> -->
+      <textarea name="id_textbox1" id="id_textbox1" type="text" value="" style = "font-size: 300%; width:600px; height:60px;" ></textarea>
 
-      <input type = "button" value="追記" style = "font-size: 200%; width:100px; height:80px;" onclick="onButton_w1();" />
+      <input type = "button" value="追記" style = "font-size: 200%; width:200px; height:100px;" onclick="onButton_w1();" />
+    </form>
+
+
+    <!-- 選択リセット -->
+    <form name "form10" id="id_form1" action="">
+      <!-- <input id = id_btn_reset type = "button" value="選択解除" style = "font-size: 200%; width:200px; height:50px;" onclick="onButton_reset();" /> -->
+
+      <!-- <textarea name="id_hint" id="id_hint" type="text" value="" style = "font-size: 300%;" rows="1" cols="25" disabled></textarea> -->
     </form>
     
 
@@ -95,117 +129,145 @@
       var textbox_back = ""
 
       //キャラクターデータ
-      //テストデータ
-      var all_cha_data = [
-        ["","","","","","","","","","","G","N","P1","P2","P3"],
-        ["","","","","","","","","","","虹ヶ咲","侑","⎛(cV„Ò ᴗ ÓV⎞","⎛(cV„Ō ᴗ ŌV⎞",""],
-        ["","","","","","","","","","","虹ヶ咲","歩夢","@cﾒ*˶ˆ ᴗ ˆ˵ﾘ","@cﾒ*˘ ᴗ ˘ﾘ",""],
-        ["","","","","","","","","","","虹ヶ咲","しずく","jΣﾐｲ˶º ᴗº˶ﾘ","jΣﾐｲ˶º ^º˶ﾘ",""],
-        ["","","","","","","","","","","Aqours","千歌","从c*・ヮ・§","从c^ヮ^§",""]
-      ]
+      // var cha_data = [
+      //   ["","","","","","","","","","","G","N","P1","P2","P3"],
+      //   ["","","","","","","","","","","虹ヶ咲","侑","⎛(cV„Ò ᴗ ÓV⎞","⎛(cV„Ō ᴗ ŌV⎞",""],
+      //   ["","","","","","","","","","","虹ヶ咲","歩夢","@cﾒ*˶ˆ ᴗ ˆ˵ﾘ","@cﾒ*˘ ᴗ ˘ﾘ",""],
+      //   ["","","","","","","","","","","虹ヶ咲","しずく","jΣﾐｲ˶º ᴗº˶ﾘ","jΣﾐｲ˶º ^º˶ﾘ",""],
+      //   ["","","","","","","","","","","Aqours","千歌","从c*・ヮ・§","从c^ヮ^§",""]
+      // ]
 
       var cha_data = [
-        ["侑","⎛(cV„Ò ᴗ ÓV⎞","⎛(cV„Ō ᴗ ŌV⎞",""],
-        ["歩夢","@cﾒ*˶ˆ ᴗ ˆ˵ﾘ","@cﾒ*˘ ᴗ ˘ﾘ",""],
-        ["しずく","jΣﾐｲ˶º ᴗº˶ﾘ","jΣﾐｲ˶º ^º˶ﾘ",""]
+        ["予備1","予備2","予備3","予備4","予備5","予備6","予備7","予備8","一人称","二人称","グループ名","名前","パターン1","パターン2","パターン3","パターン4"],
+        ["","","","","","","","","わたし","あなた","μ's","穂乃果","リ`・ヮ・)","リ´＾ヮ＾)","リ｀・-・) ",""],
+        ["","","","","","","","","わたし","あなた","μ's","絵里","∬cVσ_σv","","",""],
+        ["","","","","","","","","わたし、ことり","あなた","μ's","ことり","(・8・)","(＾8＾)","9cﾊσ ᴗσﾘ",""],
+        ["","","","","","","","","わたし","あなた","μ's","海未","/cVσ_VσV","/cV ;σ_VσV","",""],
+        ["","","","","","","","","凛","ー","μ's","凛","＞ω＜/","ネッコ","",""],
+        ["","","","","","","","","わたし","あなた","μ's","真姫","从廿_廿从","まきちゃん","",""],
+        ["","","","","","","","","ウチ","アンタ","μ's","希","╭*(๑˘ᴗ˘๑)*╮","","",""],
+        ["","","","","","","","","わたし","あなた","μ's","花陽","从*´ ヮ`ﾙ","ｲw´ヮ`)ﾊ","",""],
+        ["","","","","","","","","わたし、にこ","アンタ、あなた","μ's","にこ","J(*‘ヮ‘*)し","","",""],
+        ["","","","","","","","","わたし","あなた","Aqours","千歌","从c*・ヮ・§","从c^ヮ^§","从c*˘･з･˘§",""],
+        ["","","","","","","","","わたし","あなた","Aqours","梨子","ﾒｲ*σ _ σﾘ","ﾒｲ*,> _ <,ﾘ","ﾒﾉ＾ﾉ｡ ＾ﾘ",""],
+        ["","","","","","","","","わたし","キミ","Aqours","果南","∫∫( c||^ヮ^||","∫∫( c||#^ヮ^||","∫∫( c||•ヮ•||",""],
+        ["","","","","","","","","わたくし","あなた","Aqours","ダイヤ","|c||^.- ^||","|c||´.-｀||","|c||;　ﾛ　||　゜.゜",""],
+        ["","","","","","","","","わたし","キミ","Aqours","曜","(*> ᴗ •*)ゞ","(*> ᴗ ;*)ゞ","ﾒﾒ´- ﾝﾄ",""],
+        ["","","","","","","","","わたし、ヨハネ","アンタ、あなた","Aqours","善子","`¶cﾘ˘ヮ˚)|","●","`¶cﾘ˘～˚)",""],
+        ["","","","","","","","","マル","ー","Aqours","花丸","ﾉcﾉ,,･o･,,ﾉﾚ","ﾉcﾉ,,･ᴗ･,,ﾉﾚ","ﾉcﾉ,,｀o´,,ﾉﾚ",""],
+        ["","","","","","","","","わたし、マリー","あなた","Aqours","鞠莉","ﾉξｿ´・ω・`ﾊ6","ﾉξｿ´；ω；`ﾊ6","",""],
+        ["","","","","","","","","ルビィ","ー","Aqours","ルビィ","⌒°( ･ω･)°⌒","⌒°( ^ω^)°⌒","⌒°(#･ω･)°⌒",""],
+        ["","","","","","","","","わたし","あなた","虹ヶ咲","歩夢","@cﾒ*˶ˆ ᴗ ˆ˵ﾘ","@cﾒ*˘ ᴗ ˘ﾘ","@cﾒ*◉ _ ◉ ﾘ","₍₍ @cﾒ*˶ˆ ᴗ ˆ˵ 三*˶ˆ ᴗ ˆ˵ﾘ ⁾⁾ "],
+        ["","","","","","","","","かすみん、わたし","ー","虹ヶ咲","かすみ","从cι˘σ ᴗ σ˘*","从cι˘σ □ σ˘*","从cι˘＞ □ ＜˘*",""],
+        ["","","","","","","","","わたし","あなた","虹ヶ咲","しずく","jΣﾐｲ˶º ᴗº˶ﾘ","jΣﾐｲ˶º - º˶ﾘ","jΣﾐｲ˶º ^º˶ﾘ",""],
+        ["","","","","","","","","わたし","あなた","虹ヶ咲","果林","(ζﾙ ˘ ᴗ ˚ ﾙﾍ","(ζﾙ|˘ᴗ°ﾙ","八丈島",""],
+        ["","","","","","","","","愛さん、アタシ","キミ、アンタ","虹ヶ咲","愛","ζ㎗òヮóﾘ","ζ㎗Ō ᴗ Ōﾘ","",""],
+        ["","","","","","","","","彼方ちゃん、私","あなた","虹ヶ咲","彼方","ﾉﾚcｲ´=ω=)","ﾉﾚcｲ* ¯ ꒳¯*)","",""],
+        ["","","","","","","","","わたし","あなた","虹ヶ咲","せつ菜","⁄/*ｲ`＾ᗜ＾ﾘ","⁄/*ｲ`>ヮ<ﾘ","╭(^O^)",""],
+        ["","","","","","","","","わたし","あなた","虹ヶ咲","エマ","╰*(..•ヮ•.. ) *╯",",,(d!.•ヮ•..)",",,(d!.˘ ヮ ˘..)","スイス"],
+        ["","","","","","","","","わたし","あなた","虹ヶ咲","璃奈","从[˶˃ᴗ˂˵]从","从[´・֊・]从","从´・֊[ >ᴗ<]",""],
+        ["","","","","","","","","私","あなた","虹ヶ咲","栞子","ᶘｲ^⇁^ﾅ川","ᶘｲ˘⇁˘ﾅ川","",""],
+        ["","","","","","","","","ボク","キミ","虹ヶ咲","ミア","ζ ﾉᴗ ˘´Y","ζ ﾉ､ ˘´Y ","ｲdﾉﾉ . τlﾉ",""],
+        ["","","","","","","","","ランジュ、アタシ","アナタ","虹ヶ咲","嵐珠","ʃcʃ|.ò ᴗ ó)ʅ","ʃcʃ|.Ō ᴗ Ō)ʅ","ランジュ","ዖ⦇d ò ヮ óﾘየ"],
+        ["","","","","","","","","わたし","あなた","虹ヶ咲","侑","⎛(cV„Ò ᴗ ÓV⎞","⎛(cV„Ō ᴗ ŌV⎞","⎛(cV„Ó ᴗ ÒV⎞","⎛(cV„◜ᴗ◝V⎞"],
+        ["","","","","","","","","わたし","ー","Liella!","かのん","ﾉcﾉﾉσﾉᴗ σb","|c||σノヮσ||","/ﾙcﾉº'ᴗº)",""],
+        ["","","","","","","","","可可","ー","Liella!","可可","6cƠᴗƠ∂","クゥクゥ","",""],
+        ["","","","","","","","","わたし","ー","Liella!","千砂都","၄(cʸ„ò ᴗ óﾘ၃",",O(d,,O ᴗ O,,)O、","",""],
+        ["","","","","","","","","わたし","ー","Liella!","すみれ","/㍵ƺ˚ヮˆ)ƺ","","",""],
+        ["","","","","","","","","わたくし","ー","Liella!","恋","ʃt(c◜・ᴗ・)","⌠t(cｲ´A`Y","",""],
+        ["","","","","","","","","きな子","ー","Liella!","きな子","╭∞( ' ᗜ ' )∞╮","","",""],
+        ["","","","","","","","","私","ー","Liella!","メイ","(cࡘ„ò ωò*ᘔ","","",""],
+        ["","","","","","","","","私","ー","Liella!","四季","(.ɖ¡/ơ . ơy","","",""],
+        ["","","","","","","","","私","ー","Liella!","夏美","§ ˘σ ᴗ σ˘§","§ σ ﹏σ§","CEO",""],
+        ["","","","","","","","","","","Liella!","ウィーン","","","",""],
+        ["","","","","","","","","","","その他","ツバサ","从σ ᴗ σ从","","",""],
+        ["","","","","","","","","","","その他","英玲奈","ﾉqｲ`σﾉ_σ.ｱ","ロボ","",""],
+        ["","","","","","","","","","","その他","あんじゅ","ﾉ(δ . δ,,ﾌﾉし","フルハウス","",""],
+        ["","","","","","","","","","","その他","聖良","(q|`˘ ᴗ˘)ʅʅ","（q|˘・ᴗ・˘)ʅʅ","⌒°(q|˶^ ᴗ^˶)°⌒",""],
+        ["","","","","","","","","","","その他","理亞","ﾉJ(´σ_ σ`ﾘﾉし","","",""],
+        ["","","","","","","","","","","その他","遥","ζ(*^ᴗ^*)ζ","","",""],
+        ["","","","","","","","","","","その他","美里","","","",""],
+        ["","","","","","","","","","","その他","摩央","","","",""],
+        ["","","","","","","","","","","その他","悠奈","( ᐛ👐)","","",""],
+        ["","","","","","","","","","","その他","？？？","(Ｕ╯ꈊ╰Ｕ)","/cVσ 8 σV","",""],
       ]
 
-      var group = ["虹ヶ咲","Aqours"]
+      // var group = ["虹ヶ咲","Aqours"]
 
       //格納データ　オフセット
-      face_offset = 11
-      cha_offset = 1
+      face_offset = 11 //-1グループ名
+      cha_offset = 1 //2行目
 
       //表示キャラ テンポラリ
       var face_tmp = "⎛(cV„Ò ᴗ ÓV⎞"
       var group_name = "虹ヶ咲"
-      var group1_name = "虹ヶ咲"
-      var face1 = "侑"
       var select_face = ""
 
       //選択番号
+      var group_num1 = cha_offset
+      var face_num1 = face_offset
+      var cha_num1 = cha_offset
+      var group_name1 = cha_data[cha_offset][face_offset-1]
+      var face1 = cha_data[cha_offset][face_offset]
+
+      var group_num2 = cha_offset
+      var face_num2 = face_offset
+      var cha_num2 = cha_offset
+      var group_name2 = cha_data[cha_offset][face_offset-1]
+      var face2 = cha_data[cha_offset][face_offset]
+
       var kakko1_num = 0
-      var group_num1 = 0
-      var face_num1 = 0
-      var cha_num1 = 0
-
-      // var face_alltxt = array()
-      // var logue_alltxt = array()
-
       var kakko1_b_array = ["「","（","　"]
       var kakko1_a_array = ["」","）","　"]
       var kakko1_b = kakko1_b_array[0]
       var kakko1_a = kakko1_a_array[0]
       var kakko = ""
 
-
-      // const text_box = document.getElementById('id_text_box')
-      // const textbox1 = document.getElementById('id_text_box')
-     
-      //ここにJavaScriptを記述していく
-
-      function reflect_face(cha_num, face_num){
-        
-        //グループ名　一致不一致
-        // if (group_name != group[group_num]){
-        //   grou
-        // }else{
-        //   group_name = group[group_num]
-        // }  
-
-        // for (let i=cha_offset; i<=cha_data.length-1; i++){
-
-        // }
-
-        cha_face = cha_data[cha_num][face_num]
-        // face_tmp = cha_num1.toString() + face_num1.toString()//テスト
-        
-        //テスト
-        // document.getElementById('text_box').value = face_tmp
-
-        return cha_face 
-      }
-
-
+      document.getElementById("id_btn_group1").value = group_name1
+      document.getElementById("id_btn_group2").value = group_name2
+      document.getElementById("id_btn_face1").value = face1
+      document.getElementById("id_btn_face2").value = face2
 
 
       //グループ変更１
+      //------------------------------------------------------
       function onButton_g1(){
         //グループナンバー　循環
-        if (group_num1 < group.length-1){
-          group_num1 += 1
-        }else if(group_num1 == group.length-1){
-          group_num1 = 0
-        }
+        if (group_num1 < cha_data.length-1){
+          group_num1 +=1
 
-        i = 1
-        while (all_cha_data[i][face_offset] != ""){
-          if (all_cha_data[i][face_offset] == group[group_num1])
-          for (j = face_offset; j<=all_cha_data[0].length; j++){
-
+          while (group_name1 == cha_data[group_num1][face_offset-1]){
+            if(group_num1 == cha_data.length-1){
+              group_num1 = cha_offset
+              break
+            }
+              group_num1 +=1 
           }
-          i += 1
+
+        }else if(group_num1 == cha_data.length-1){
+          group_num1 = cha_offset
         }
 
-
-        document.getElementById("id_btn_group1").value = group[group_num1]
+        cha_num1 = group_num1
+        face1 = cha_data[cha_num1][face_num1]
+        document.getElementById("id_btn_face1").value = face1
+        group_name1 = cha_data[group_num1][face_offset-1]
+        document.getElementById("id_btn_group1").value = group_name1
       }
-
-
 
       //表情変更１
       //------------------------------------------------------
       function onButton_l1(){//表情　逆方向
-        if(face_num1 > 0){
+        if(face_num1 > face_offset){
           face_num1 -= 1
         }else{
           face_num1 = cha_data[0].length-1
         }
 
         //キャラオーバーフロー回避
-        if(cha_data.length - 1 < cha_num1){
-            cha_num1 = cha_name_data[0].size-1
-        }
+        // if(cha_data.length - 1 < cha_num1){
+        //     cha_num1 = cha_name_data[0].size-1
+        // }
 
         //番号をもとにキャラ、表情をセット
         face1 = cha_data[cha_num1][face_num1]
@@ -221,18 +283,18 @@
         if(cha_data[0].length - 1 > face_num1){
           face_num1 += 1
         }else{
-          face_num1 = 0
+          face_num1 = face_offset
         }
 
         //キャラオーバーフロー回避
-        if(cha_data.length - 1 < cha_num1){
-            cha_num1 = cha_name_data[0].size-1
-        }
+        // if(cha_data.length - 1 < cha_num1){
+        //     cha_num1 = cha_name_data[0].size-1
+        // }
 
         //番号をもとにキャラ、表情をセット
         face1 = cha_data[cha_num1][face_num1]
         if(face1 == ""){
-          face_num1 = 0
+          face_num1 = face_offset
           face1 = cha_data[cha_num1][face_num1]
         }
         select_face = face1
@@ -244,24 +306,70 @@
       //キャラ変更１
       //------------------------------------------------------
       function onButton_u1(){//キャラ　逆方向
-        if (cha_num1 > 0){
-          cha_num1 -= 1
-        }else if (cha_num1 == 0){
-          cha_num1 = cha_data.length-1
+        // if (cha_num1 > cha_offset && cha_data[cha_num1-1][face_offset-1] == group_name1){
+        //   cha_num1 -= 1
+        // }else if (cha_num1 >= cha_offset || cha_data[cha_num1-1][face_offset-1] != group_name1){
+        //   cha_num1 = cha_data.length-1
+        // }
+        
+        // while(cha_data[cha_num1][face_offset-1] != group_name1){
+        //   cha_num1 -=1
+        // }
+
+        if (cha_num1 > cha_offset){
+          if (cha_data[cha_num1-1][face_offset-1] == group_name1){
+            cha_num1 -=1
+          }else{//リバース
+            while (cha_data[cha_num1+1][face_offset-1] == group_name1){
+              cha_num1 +=1
+            }
+          }
+        }else if(cha_num1 == cha_offset){
+          while (cha_data[cha_num1+1][face_offset-1] == group_name1){
+              cha_num1 +=1
+            }
         }
+
         face1 = cha_data[cha_num1][face_num1]
+        while(face1 == ""){
+          face_num1 -= 1
+          face1 = cha_data[cha_num1][face_num1]
+        }
         select_face = face1
         document.getElementById("id_btn_face1").value = face1
         document.getElementById("id_textbox1").focus()
       }//----------------------------------------------------
       
       function onButton_d1(){//キャラ　順方向
-        if (cha_data.length-1 > cha_num1){
-          cha_num1 += 1
-        }else if (cha_data.length-1 == cha_num1){
-          cha_num1 = 0
+        // if (cha_data.length-1 > cha_num1 && cha_data[cha_num1+1][face_offset-1] == group_name1){
+        //   cha_num1 += 1
+        // }else if (cha_data.length-1 == cha_num1 ||  cha_data[cha_num1+1][face_offset-1] != group_name1){
+        //   cha_num1 = cha_offset
+        // }
+
+        // while(cha_data[cha_num1][face_offset-1] != group_name1){
+        //   cha_num1 +=1
+        // }
+
+        if(cha_data.length-1 > cha_num1){
+          if (cha_data[cha_num1+1][face_offset-1] == group_name1){
+            cha_num1 +=1
+          }else{//リバース
+            while (cha_data[cha_num1-1][face_offset-1] == group_name1){
+              cha_num1 -=1
+            }
+          }
+        }else if(cha_data.length-1 == cha_num1){
+          while (cha_data[cha_num1-1][face_offset-1] == group_name1){
+              cha_num1 -=1
+            }
         }
+
         face1 = cha_data[cha_num1][face_num1]
+        while(face1 == ""){
+          face_num1 -= 1
+          face1 = cha_data[cha_num1][face_num1]
+        }
         select_face = face1
         document.getElementById("id_btn_face1").value = face1
         document.getElementById("id_textbox1").focus()
@@ -269,12 +377,166 @@
 
 
       //キャラ 選択１
+      //------------------------------------------------------
       function onButton_face1(){
+        onButton_reset()
         select_face = face1
-        document.getElementById("id_btn_face1").value = select_face
         document.getElementById("id_btn_face1").style.backgroundColor = "#ffffff"
         document.getElementById("id_textbox1").focus()
       }
+
+
+      //------------------------------------------------------
+      //::::::::::::::::::::::::::::::::::::::::::::::::::::::
+      //------------------------------------------------------
+
+
+      //グループ変更２
+      //------------------------------------------------------
+      function onButton_g2(){
+        //グループナンバー　循環        
+        if (group_num2 < cha_data.length-1){
+          group_num2 +=1
+
+          while (group_name2 == cha_data[group_num2][face_offset-1]){
+            if(group_num2 == cha_data.length-1){
+              group_num2 = cha_offset
+              break
+            }
+              group_num2 +=1 
+          }
+
+        }else if(group_num2 == cha_data.length-1){
+          group_num2 = cha_offset
+        }
+
+        cha_num2 = group_num2
+        face2 = cha_data[cha_num2][face_num2]
+        document.getElementById("id_btn_face2").value = face2
+        group_name2 = cha_data[group_num2][face_offset-1]
+        document.getElementById("id_btn_group2").value = group_name2
+      }
+
+      //表情変更２
+      //------------------------------------------------------
+      function onButton_l2(){//表情　逆方向
+        if(face_num2 > face_offset){
+          face_num2 -= 1
+        }else{
+          face_num2 = cha_data[0].length-1
+        }
+
+        //番号をもとにキャラ、表情をセット
+        face2 = cha_data[cha_num2][face_num2]
+        while(face2 == ""){
+          face_num2 -= 1
+          face2 = cha_data[cha_num2][face_num2]
+        }
+        select_face = face2
+        document.getElementById("id_btn_face2").value = face2
+        document.getElementById("id_textbox1").focus()
+      }//----------------------------------------------------
+      function onButton_r2(){//表情　順方向
+        if(cha_data[0].length - 1 > face_num2){
+          face_num2 += 1
+        }else{
+          face_num2 = face_offset
+        }
+
+        //番号をもとにキャラ、表情をセット
+        face2 = cha_data[cha_num2][face_num2]
+        if(face2 == ""){
+          face_num2 = face_offset
+          face2 = cha_data[cha_num2][face_num2]
+        }
+        select_face = face2
+        document.getElementById("id_btn_face2").value = face2
+        document.getElementById("id_textbox1").focus()
+      }//----------------------------------------------------
+
+
+      //キャラ変更２
+      //------------------------------------------------------
+      function onButton_u2(){//キャラ　逆方向
+        if (cha_num2 > cha_offset){
+          if (cha_data[cha_num2-1][face_offset-1] == group_name2){
+            cha_num2 -=1
+          }else{//リバース
+            while (cha_data[cha_num2+1][face_offset-1] == group_name2){
+              cha_num2 +=1
+            }
+          }
+        }else if(cha_num2 == cha_offset){
+          while (cha_data[cha_num2+1][face_offset-1] == group_name2){
+              cha_num2 +=1
+            }
+        }
+
+        face2 = cha_data[cha_num2][face_num2]
+        while(face2 == ""){
+          face_num2 -= 1
+          face2 = cha_data[cha_num2][face_num2]
+        }
+
+        select_face = face2
+        document.getElementById("id_btn_face2").value = face2
+        document.getElementById("id_textbox1").focus()
+      }//----------------------------------------------------
+      
+      function onButton_d2(){//キャラ　順方向
+        if(cha_data.length-1 > cha_num2){
+          if (cha_data[cha_num2+1][face_offset-1] == group_name2){
+            cha_num2 +=1
+          }else{//リバース
+            while (cha_data[cha_num2-1][face_offset-1] == group_name2){
+              cha_num2 -=1
+            }
+          }
+        }else if(cha_data.length-1 == cha_num2){
+          while (cha_data[cha_num2-1][face_offset-1] == group_name2){
+              cha_num2 -=1
+            }
+        }
+
+        face2 = cha_data[cha_num2][face_num2]
+        while(face2 == ""){
+          face_num2 -= 1
+          face2 = cha_data[cha_num2][face_num2]
+        }
+
+        select_face = face2
+        document.getElementById("id_btn_face2").value = face2
+        document.getElementById("id_textbox1").focus()
+      }//----------------------------------------------------
+
+
+      //キャラ 選択２
+      //------------------------------------------------------
+      function onButton_face2(){
+        onButton_reset()
+        select_face = face2
+        document.getElementById("id_btn_face2").style.backgroundColor = "#ffffff"
+        document.getElementById("id_textbox1").focus()
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -301,6 +563,8 @@
         document.getElementById("id_text_box").value = a_alltext
         document.getElementById("id_text_box").scrollTop = document.getElementById("id_text_box").scrollHeight
         del_tmp = a_alltext
+        
+        onInput_text_box()
         
         //記入欄　初期化
         document.forms.id_form1.id_textbox1.value = ""
@@ -332,7 +596,7 @@
         kakko = kakko1_b + kakko1_a
 
         document.getElementById("id_btn_kakko1").value = kakko
-        document.getElementById("id_textbox1").focus()
+        // document.getElementById("id_textbox1").focus()
       }
 
       //追記前に戻る
@@ -340,6 +604,7 @@
         document.getElementById("id_text_box").value = textbox_back
         document.getElementById("id_textbox1").value = input_back
         document.getElementById("id_textbox1").focus()
+        onInput_text_box()
       }
 
       //消去
@@ -351,6 +616,14 @@
           document.getElementById("id_text_box").value = del_tmp
           document.getElementById("id_textbox1").focus()
         }
+        onInput_text_box()
+      }
+
+      //テキスト入力時
+      function onInput_text_box(){
+        var txt_str = document.getElementById("id_text_box").value
+        var rows_num = txt_str.split("\n").length
+        document.getElementById("id_rows_byte_txt").value = rows_num.toString() + " 行 / " + txt_str.replace(/%../g,"*").length.toString() + " byte"
       }
 
       //コピー
@@ -373,9 +646,22 @@
         document.getElementById("id_text_box").value = a_alltext
         del_tmp = a_alltext
         
+        onInput_text_box()
+
         //フォーカス
         document.getElementById("id_textbox1").focus()
       }
+
+
+      //選択リセット
+      function onButton_reset(){
+        select_face = ""
+        document.getElementById("id_btn_face1").style.backgroundColor = "#f5f5f5"
+        document.getElementById("id_btn_face2").style.backgroundColor = "#f5f5f5"
+      }
+
+
+
 
 
     </script>
