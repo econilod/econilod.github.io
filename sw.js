@@ -1,6 +1,4 @@
-var cache_name = "tomoriru-setsuna"
-
-var cache_list = [
+var tomoriru_setsuna = [
   "index.thml",
   "/icon-192x192.png",
   "/icon-256x256.png",
@@ -12,10 +10,15 @@ var cache_list = [
 self.addEventListener('install',function(e) {
   e.waitUntil(
     caches.open('chache_v1').then(function(cache) {
-      return cache.addAll(cache_list)
+      return cache.addAll(tomoriru_setsuna)
     })
   )
 })
 
-self.addEventListener('fetch', function(e) {
+self.addEventListener('fetch', function(event) {
+  event.respondwith(
+    caches.match(event.request).then(function(response) {
+      return response || fetch(event.request)
+    })
+  )
 })
