@@ -1411,8 +1411,13 @@
       //キーボード
       document.addEventListener("keypress",keypressEvent)
       document.addEventListener("keydown",keydownEvent)
+      document.addEventListener("keyup",keyupEvent)
 
       function keydownEvent(e){
+
+        if(e.ctrlKey === true){
+          ctrl_tf = true
+        }
 
         //有効
         if(e.keyCode >= 112 && e.keyCode <= 116){
@@ -1506,20 +1511,29 @@
             onButton_g4()
           }
 
-        }else if(e.ctrlKey === true){
-          ctrl_tf = true
         }
+        
+        return false
+      }
+
+
+      function keypressEvent(e){
+
+        // if(e.ctrlKey === true){
+        //   ctrl_tf = true
+        // }
 
         return false
       }
 
-      function keypressEvent(e){
 
-        if(e.ctrlKey === true){
-          ctrl_tf = false
-        }
+      function keyupEvent(e){
 
-        return false
+      if(e.ctrlKey === true){
+        ctrl_tf = false
+      }
+
+      return false
       }
 
 
