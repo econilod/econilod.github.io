@@ -6,6 +6,7 @@
 </head>
 
 <style>
+
 </style>
 
 <body>
@@ -15,32 +16,32 @@
     <!-- 上部2 -->
     <form name "top2" id="id_top2" action="">
       <!-- 上から分割点まで切り取り -->
-      <input type = "button" value="分割切取り" style = "font-size: 200%; width:200px; height:80px;" onclick="onButton_c_cut();" />
+      <input type = "button" value="分割切取り" style = "font-size: 200%; width:200px; height:80px; vertical-align: middle;" onclick="onButton_c_cut();" />
 
       <!-- 前回の分割ボイントから -->
-      <textarea  id="id_c_row" type="text" style = "font-size: 250%; width:400px; height:80px;  margin-bottom:-30px;" placeholder="直前の分割点から　0行" ></textarea>
+      <textarea  id="id_c_row" type="text" style = "font-size: 250%; width:400px; height:80px; vertical-align: middle;" placeholder="直前の分割点から　0行" ></textarea>
 
       <!-- 分割ポイント -->
-      <input type = "button" value="分割点挿入" style = "font-size: 200%; width:200px; height:80px;" onclick="onButton_c_point();" />            
+      <input type = "button" value="分割点挿入" style = "font-size: 200%; width:200px; height:80px; vertical-align: middle;" onclick="onButton_c_point();" />            
     </form>
 
 
     <!-- 上部 -->
     <form name "top" id="id_top" action="">
       <!-- 戻る -->
-      <input id = "id_btn_back" type = "button" value="Back" style = "font-size: 200%; width:150px; height:80px;" onclick="onButton_back();" />
+      <input id = "id_btn_back" type = "button" value="Back" style = "font-size: 200%; width:150px; height:80px; vertical-align: middle;" onclick="onButton_back();" />
 
       <!-- 消去 -->
-      <input type = "button" value="Del" style = "font-size: 200%; width:100px; height:80px;" onclick="onButton_del();" />
+      <input type = "button" value="Del" style = "font-size: 200%; width:100px; height:80px; vertical-align: middle;" onclick="onButton_del();" />
 
       <!-- 行数　byte -->
-      <input  id="id_rows_byte_txt" type="text" style = "font-size: 200%; width:300px; height:80px;" value="0 行 / 0 byte" disabled/>
+      <input  id="id_rows_byte_txt" type="text" style = "font-size: 200%; width:300px; height:80px; vertical-align: middle;" value="0 行 / 0 byte" disabled/>
 
       <!-- コピー -->
-      <input type = "button" value="Copy" style = "font-size: 200%; width:150px; height:80px;" onclick="onButton_copy();" />
+      <input type = "button" value="Copy" style = "font-size: 200%; width:150px; height:80px; vertical-align: middle;" onclick="onButton_copy();" />
      
       <!-- 選択リセット -->
-      <input id = id_btn_reset type = "button" value="選択解除" style = "font-size: 200%; width:200px; height:80px; " onclick="onButton_reset();" />      
+      <input id = id_btn_reset type = "button" value="選択解除" style = "font-size: 200%; width:200px; height:80px; vertical-align: middle;" onclick="onButton_reset();" />      
     </form>
   
     
@@ -52,18 +53,18 @@
     <!-- 選択欄１ -->
     <form name "select1" id="id_select1" action="">
       <!-- グループ変更 -->
-      <input id = "id_btn_group1" type = "button" value="" style = "font-size: 200%; width:160px; height:80px; padding:0;" onclick="onButton_g1();" />
+      <input id = "id_btn_group1" type = "button" value="" style = "font-size: 200%; width:160px; height:80px; padding:0px; vertical-align: middle;" onclick="onButton_g1();" />
 
       <!-- キャラ変更 -->
-      <input type = "button" value="▲" style = "font-size: 200%; width:100px; height:80px;" onclick="onButton_u1();" />
-      <input type = "button" value="▼" style = "font-size: 200%; width:100px; height:80px;" onclick="onButton_d1();" />
+      <input type = "button" value="▲" style = "font-size: 200%; width:100px; height:80px; vertical-align: middle;" onclick="onButton_u1();" />
+      <input type = "button" value="▼" style = "font-size: 200%; width:100px; height:80px; vertical-align: middle;" onclick="onButton_d1();" />
 
       <!-- 選択 -->
-      <input id = "id_btn_face1" type = "button" value="" style = "font-size: 200%; width:380px; height:80px;" onclick="onButton_face1();" />
+      <input id = "id_btn_face1" type = "button" value="" style = "font-size: 200%; width:380px; height:80px; vertical-align: middle;" onclick="onButton_face1();" />
 
       <!-- 表情変更 -->
-      <input type = "button" value="◀" style = "font-size: 200%; width:100px; height:80px;" onclick="onButton_l1();" />
-      <input type = "button" value="▶" style = "font-size: 200%; width:100px; height:80px;" onclick="onButton_r1();" />      
+      <input type = "button" value="◀" style = "font-size: 200%; width:100px; height:80px; vertical-align: middle;" onclick="onButton_l1();" />
+      <input type = "button" value="▶" style = "font-size: 200%; width:100px; height:80px; vertical-align: middle;" onclick="onButton_r1();" />      
     </form>
 
 <!-- ------------------------------------------------------------------------ -->
@@ -71,18 +72,18 @@
     <!-- 選択欄２ -->
     <form name "select2" id="id_select2" action="">
       <!-- グループ変更 -->
-      <input id = "id_btn_group2" type = "button" value="" style = "font-size: 200%; width:160px; height:80px; padding:0;" onclick="onButton_g2();" />
+      <input id = "id_btn_group2" type = "button" value="" style = "font-size: 200%; width:160px; height:80px; padding:0px; vertical-align: middle;" onclick="onButton_g2();" />
 
       <!-- キャラ変更 -->
-      <input type = "button" value="▲" style = "font-size: 200%; width:100px; height:80px;" onclick="onButton_u2();" />
-      <input type = "button" value="▼" style = "font-size: 200%; width:100px; height:80px;" onclick="onButton_d2();" />
+      <input type = "button" value="▲" style = "font-size: 200%; width:100px; height:80px; vertical-align: middle;" onclick="onButton_u2();" />
+      <input type = "button" value="▼" style = "font-size: 200%; width:100px; height:80px; vertical-align: middle;" onclick="onButton_d2();" />
 
       <!-- 選択 -->
-      <input id = "id_btn_face2" type = "button" value="" style = "font-size: 200%; width:380px; height:80px;" onclick="onButton_face2();" />
+      <input id = "id_btn_face2" type = "button" value="" style = "font-size: 200%; width:380px; height:80px; vertical-align: middle;" onclick="onButton_face2();" />
 
       <!-- 表情変更 -->
-      <input type = "button" value="◀" style = "font-size: 200%; width:100px; height:80px;" onclick="onButton_l2();" />
-      <input type = "button" value="▶" style = "font-size: 200%; width:100px; height:80px;" onclick="onButton_r2();" />
+      <input type = "button" value="◀" style = "font-size: 200%; width:100px; height:80px; vertical-align: middle;" onclick="onButton_l2();" />
+      <input type = "button" value="▶" style = "font-size: 200%; width:100px; height:80px; vertical-align: middle;" onclick="onButton_r2();" />
     </form>
 
 <!-- ------------------------------------------------------------------------ -->
@@ -90,18 +91,18 @@
 <!-- 選択欄３ -->
     <form name "select3" id="id_select3" action="">
       <!-- グループ変更 -->
-      <input id = "id_btn_group3" type = "button" value="" style = "font-size: 200%; width:160px; height:80px; padding:0;" onclick="onButton_g3();" />
+      <input id = "id_btn_group3" type = "button" value="" style = "font-size: 200%; width:160px; height:80px; padding:0; vertical-align: middle;" onclick="onButton_g3();" />
 
       <!-- キャラ変更 -->
-      <input type = "button" value="▲" style = "font-size: 200%; width:100px; height:80px;" onclick="onButton_u3();" />
-      <input type = "button" value="▼" style = "font-size: 200%; width:100px; height:80px;" onclick="onButton_d3();" />
+      <input type = "button" value="▲" style = "font-size: 200%; width:100px; height:80px; vertical-align: middle;" onclick="onButton_u3();" />
+      <input type = "button" value="▼" style = "font-size: 200%; width:100px; height:80px; vertical-align: middle;" onclick="onButton_d3();" />
 
       <!-- 選択 -->
-      <input id = "id_btn_face3" type = "button" value="" style = "font-size: 200%; width:380px; height:80px;" onclick="onButton_face3();" />
+      <input id = "id_btn_face3" type = "button" value="" style = "font-size: 200%; width:380px; height:80px; vertical-align: middle;" onclick="onButton_face3();" />
 
       <!-- 表情変更 -->
-      <input type = "button" value="◀" style = "font-size: 200%; width:100px; height:80px;" onclick="onButton_l3();" />
-      <input type = "button" value="▶" style = "font-size: 200%; width:100px; height:80px;" onclick="onButton_r3();" />
+      <input type = "button" value="◀" style = "font-size: 200%; width:100px; height:80px; vertical-align: middle;" onclick="onButton_l3();" />
+      <input type = "button" value="▶" style = "font-size: 200%; width:100px; height:80px; vertical-align: middle;" onclick="onButton_r3();" />
     </form>
 
 <!-- ------------------------------------------------------------------------ -->
@@ -109,29 +110,29 @@
 <!-- 選択欄４ -->
     <form name "select4" id="id_select4" action="">
       <!-- グループ変更 -->
-      <input id = "id_btn_group4" type = "button" value="" style = "font-size: 200%; width:160px; height:80px; padding:0;" onclick="onButton_g4();" />
+      <input id = "id_btn_group4" type = "button" value="" style = "font-size: 200%; width:160px; height:80px; padding:0; vertical-align: middle;" onclick="onButton_g4();" />
 
       <!-- キャラ変更 -->
-      <input type = "button" value="▲" style = "font-size: 200%; width:100px; height:80px;" onclick="onButton_u4();" />
-      <input type = "button" value="▼" style = "font-size: 200%; width:100px; height:80px;" onclick="onButton_d4();" />
+      <input type = "button" value="▲" style = "font-size: 200%; width:100px; height:80px; vertical-align: middle;" onclick="onButton_u4();" />
+      <input type = "button" value="▼" style = "font-size: 200%; width:100px; height:80px; vertical-align: middle;" onclick="onButton_d4();" />
 
       <!-- 選択 -->
-      <input id = "id_btn_face4" type = "button" value="" style = "font-size: 200%; width:380px; height:80px;" onclick="onButton_face4();" />
+      <input id = "id_btn_face4" type = "button" value="" style = "font-size: 200%; width:380px; height:80px; vertical-align: middle;" onclick="onButton_face4();" />
 
       <!-- 表情変更 -->
-      <input type = "button" value="◀" style = "font-size: 200%; width:100px; height:80px;" onclick="onButton_l4();" />
-      <input type = "button" value="▶" style = "font-size: 200%; width:100px; height:80px;" onclick="onButton_r4();" />
+      <input type = "button" value="◀" style = "font-size: 200%; width:100px; height:80px; vertical-align: middle;" onclick="onButton_l4();" />
+      <input type = "button" value="▶" style = "font-size: 200%; width:100px; height:80px; vertical-align: middle;" onclick="onButton_r4();" />
     </form>
 
 <!-- ------------------------------------------------------------------------ -->
 
     <!-- 入力欄 -->
     <form name "form1" id="id_form1" action="">
-      <input id = id_btn_kakko1 type = "button" value="「」" style = "font-size: 200%; width:120px; height:80px;" onclick="onButton_kakko1();" />
+      <input id = id_btn_kakko1 type = "button" value="「」" style = "font-size: 200%; width:120px; height:80px; vertical-align: middle;" onclick="onButton_kakko1();" />
 
-      <textarea name="id_textbox1" id="id_textbox1" type="text" value="" style = "font-size: 200%; width:670px; height:80px; margin-bottom:-30px;" oninput="onInput_textbox1();"></textarea>
+      <textarea name="id_textbox1" id="id_textbox1" type="text" value="" style = "font-size: 200%; width:670px; height:80px; vertical-align: middle;" oninput="onInput_textbox1();"></textarea>
 
-      <input type = "button" value="追記" style = "font-size: 200%; width:160px; height:80px;" onclick="onButton_w1();" />
+      <input type = "button" value="追記" style = "font-size: 200%; width:160px; height:80px; vertical-align: middle;" onclick="onButton_w1();" />
     </form>
 
 
