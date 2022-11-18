@@ -1477,6 +1477,12 @@
           onButton_face4()
         }
 
+        if(e.key === "F5"){
+          e.keyCode = null
+          e.returnValue = false
+          onButton_reset()
+        }
+
         if(e.key === "i" && ctrl_tf == true){
         // }else if(e.key === "i" && ctrl_tf == true){
           e.key = null
