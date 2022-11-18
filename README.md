@@ -1,2 +1,2 @@
 # econilod.github.io
-# more easy to make ss
+# more easy to make SS
