@@ -9,7 +9,7 @@ var tomoriru_setsuna = [
 
 self.addEventListener('install',function(e) {
   e.waitUntil(
-    caches.open('chache_v1').then(function(cache) {
+    caches.open(tomoriru_setsuna).then(function(cache) {
       return cache.addAll(tomoriru_setsuna)
     })
   )
@@ -18,7 +18,24 @@ self.addEventListener('install',function(e) {
 self.addEventListener('fetch', function(event) {
   event.respondwith(
     caches.match(event.request).then(function(response) {
+      
+      //
+      if(navigator.onLine != false){
+        return caches.open(tomoriru_setsuna).then(function(cache){
+          return cache.match(event.request)
+        })
+      }
+
       return response || fetch(event.request)
     })
   )
 })
+
+
+// if(navigator.onLine != false){
+//   e.waitUntil(
+//     caches.open(tomoriru_setsuna).then(function(cache) {
+//       return cache.addAll(tomoriru_setsuna)
+//     })
+//   )
+// }
