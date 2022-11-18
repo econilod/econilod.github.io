@@ -1425,34 +1425,60 @@
           ctrl_tf = true
         }
 
-        //有効
-        if(e.keyCode >= 112 && e.keyCode <= 116){
+        //非推奨
+        // if(e.keyCode >= 112 && e.keyCode <= 116){
+        //   e.keyCode = null
+        //   e.returnValue = false
+
+        //   switch(e.keyCode){
+        //     //F1
+        //     case 112:
+        //       onButton_face1()
+        //       break
+
+        //     case 113:
+        //       onButton_face2()
+        //       break
+
+        //     case 114:
+        //       onButton_face3()
+        //       break
+
+        //     case 115:
+        //       onButton_face4()
+        //       break
+
+        //     case 116:
+        //       onButton_reset()
+        //       break
+        //   }
+
+        if(e.key === "F1"){
           e.keyCode = null
           e.returnValue = false
+          onButton_face1()
+        }
 
-          switch(e.keyCode){
-            //F1
-            case 112:
-              onButton_face1()
-              break
+        if(e.key === "F2"){
+          e.keyCode = null
+          e.returnValue = false
+          onButton_face2()
+        }
 
-            case 113:
-              onButton_face2()
-              break
+        if(e.key === "F3"){
+          e.keyCode = null
+          e.returnValue = false
+          onButton_face3()
+        }
 
-            case 114:
-              onButton_face3()
-              break
+        if(e.key === "F4"){
+          e.keyCode = null
+          e.returnValue = false
+          onButton_face4()
+        }
 
-            case 115:
-              onButton_face4()
-              break
-
-            case 116:
-              onButton_reset()
-              break
-          }
-        }else if(e.key === "i" && ctrl_tf == true){
+        if(e.key === "i" && ctrl_tf == true){
+        // }else if(e.key === "i" && ctrl_tf == true){
           e.key = null
           e.returnValue = false
           if(select_line_save == 1){
@@ -1517,20 +1543,31 @@
             onButton_g4()
           }
 
+        }else if(e.key === "[" && ctrl_tf == true){
+          e.key = null
+          e.returnValue = false
+          onButton_kakko1()
+
+        }else if(e.key === "Enter" && ctrl_tf == true){
+          e.key = null
+          e.returnValue = false
+          onButton_w1()
+
+        }else if(e.key === "Backspace" && ctrl_tf == true){
+          e.key = null
+          e.returnValue = false
+          onButton_back()
+
         }
         
         return false
       }
 
 
-      function keypressEvent(e){
+      // function keypressEvent(e){//非推奨
 
-        // if(e.ctrlKey === true){
-        //   ctrl_tf = true
-        // }
-
-        return false
-      }
+      //   return false
+      // }
 
 
       function keyupEvent(e){
