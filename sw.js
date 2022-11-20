@@ -4,7 +4,8 @@ var tomoriru_setsuna = [
   "/icon-256x256.png",
   "/icon-384x384.png",
   "/icon-512x512.png",
-  "/manifest.json"
+  "/manifest.json",
+  "https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"
 ]
 
 self.addEventListener('install',function(e) {
@@ -19,7 +20,7 @@ self.addEventListener('fetch', function(event) {
   event.respondwith(
     caches.match(event.request).then(function(response) {
       
-      //
+      //if(cache != tomoriru_setsuna){
       if(navigator.onLine != false){
         return caches.open(tomoriru_setsuna).then(function(cache){
           return cache.match(event.request)
@@ -30,12 +31,3 @@ self.addEventListener('fetch', function(event) {
     })
   )
 })
-
-
-// if(navigator.onLine != false){
-//   e.waitUntil(
-//     caches.open(tomoriru_setsuna).then(function(cache) {
-//       return cache.addAll(tomoriru_setsuna)
-//     })
-//   )
-// }
