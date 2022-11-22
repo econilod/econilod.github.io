@@ -31,16 +31,16 @@
     <!-- 上部 -->
     <form name "top" id="id_top" action="">
       <!-- 戻る -->
-      <input id = "id_btn_back" type = "button" value="Back" style = "font-size: 200%; width:150px; height:80px; vertical-align: middle;" onclick="onButton_back();" />
+      <input id = "id_btn_back" type = "button" value="戻る" style = "font-size: 200%; width:150px; height:80px; vertical-align: middle;" onclick="onButton_back();" />
 
       <!-- 消去 -->
-      <input type = "button" value="Del" style = "font-size: 200%; width:100px; height:80px; vertical-align: middle;" onclick="onButton_del();" />
+      <input type = "button" value="消去" style = "font-size: 200%; width:100px; height:80px; vertical-align: middle;" onclick="onButton_del();" />
 
       <!-- 行数　byte -->
       <input  id="id_rows_byte_txt" type="text" style = "font-size: 200%; width:300px; height:80px; vertical-align: middle;" value="0 行 / 0 byte" disabled/>
 
       <!-- コピー -->
-      <input type = "button" value="Copy" style = "font-size: 200%; width:150px; height:80px; vertical-align: middle;" onclick="onButton_copy();" />
+      <input type = "button" value="コピー" style = "font-size: 200%; width:150px; height:80px; vertical-align: middle;" onclick="onButton_copy();" />
      
       <!-- 選択リセット -->
       <input id = id_btn_reset type = "button" value="選択解除" style = "font-size: 200%; width:200px; height:80px; vertical-align: middle;" onclick="onButton_reset();" />      
@@ -48,7 +48,7 @@
   
     
     <!-- テキストエリア -->
-    <textarea id="id_text_box" name="text_box" type="text" style = "font-size: 200%; width:960px; height:450px; margin-bottom:20px;" oninput="onInput_text_box();"></textarea>
+    <textarea id="id_text_box" name="text_box" type="text" style = "font-size: 100%; width:960px; height:450px; margin-bottom:20px;" oninput="onInput_text_box();"></textarea>
        
 <!-- ------------------------------------------------------------------------ -->
 
@@ -1408,6 +1408,38 @@
 
 
       //ファイル
+      document.getElementById("id_read").addEventListener("change",function(e) {
+        
+        // var XLSX = require("xlsx")
+        // // var Utiles = XLSX.Utiles
+
+        // var result = e.target.files[0]
+        // var reader = FileReader()
+
+        // var wb = XLSX.readFile(document.getElementById("id_read").value.toString())
+        // var sheet1 = wb.Sheets["name"]
+        // var range = wb.Sheets["name"]["!ref"]
+
+        // var test = sheet1["M2"]
+
+        // var test = "test"
+        var test = document.getElementById("id_read").value.toString()
+        alert(test)
+        // alert(document.getElementById("id_read").value)
+
+        // reader.onload = function(e){
+        //   alert("test")
+        // }
+      })
+
+      // var reader = FileReader()
+      // reader.onload = function(e){
+      //   var data = e.target.result
+      //   var arr = fixdata(data)
+      // }
+
+
+
       // function handlefile(e){
       //   var X = XLSX
       //   var files = e.target.files
