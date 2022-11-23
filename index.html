@@ -1,7 +1,7 @@
 <link rel="manifest" href="manifest.json">
 
 <head>
-  <!-- <meta charset="UTF-8"> -->
+  <meta name="viewport" content="user-scalable = no">
   <title>SS Editor</title>
 </head>
 
@@ -1407,57 +1407,55 @@
       }
 
 
-      //ファイル
+      //ファイル      
       document.getElementById("id_read").addEventListener("change",function(e) {
+        var pick_f = document.getElementById("id_read").files
         
-        // var XLSX = require("xlsx")
-        // // var Utiles = XLSX.Utiles
+        var f = files[0]
+        var reader = FileReader()
 
-        // var result = e.target.files[0]
-        // var reader = FileReader()
+        var X = XLSX
 
-        // var wb = XLSX.readFile(document.getElementById("id_read").value.toString())
-        // var sheet1 = wb.Sheets["name"]
-        // var range = wb.Sheets["name"]["!ref"]
+        reader.onload = function(e){
+          var data = e.target.result
+          var arr = fixdata(data)
+          
 
-        // var test = sheet1["M2"]
+          var wb
+          wb = X.read(btoa(arr),{
+            type: "base64",
+            cellDates: true,
+          })
 
-        // var test = "test"
-        var test = document.getElementById("id_read").value.toString()
-        alert(test)
-        // alert(document.getElementById("id_read").value)
+          //json
+          var output = ""
+          output = to_json(wb)
+          alert(output)
+        }
 
-        // reader.onload = function(e){
-        //   alert("test")
-        // }
+        reader.readAsArrayBuffer(f)
       })
+      
+      function fixdata(data){
+        var o = ""
+        var l = 0
+        var w = 0
 
-      // var reader = FileReader()
-      // reader.onload = function(e){
-      //   var data = e.target.result
-      //   var arr = fixdata(data)
-      // }
+        for (; l < data.byteLength/w; l++) o += String.fromCharCode.apply(null, Uint8Array(data.slice(l*w,l*w+w)))
+        o += String.fromCharCode.apply(null, Uint8Array(data.slice(l*w,l*w+w)))
+        return o
+      }
 
-
-
-      // function handlefile(e){
-      //   var X = XLSX
-      //   var files = e.target.files
-      //   var f = files[0]
-
-      //   var reader = FileReader()
-      //   reader.onload = function(e){
-      //     var data = e.target.result
-      //     var arr = fixdata(data)
-      //   }
-
-      //   var wb
-      //   wb = X.read(btoa(arr),{
-      //     type: "base64",
-      //     cellDates: true,
-      //   })
-
-      // }
+      function to_json(workbook){
+        var result = {}
+        workbook.SheetNames.forEach(function(sheetName){
+          var roa = X.utiles.sheet_to_json(workbook.Sheets[sheetName],
+          {
+            raw: true,
+          })
+        })
+        return result
+      }
 
 
       //キーボード　使ってないのはコメントアウト必須
