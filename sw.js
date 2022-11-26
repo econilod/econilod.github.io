@@ -9,13 +9,17 @@ var tomoriru_setsuna = [
   // "https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"
 ]
 
-self.addEventListener('install',function(e) {
-  e.waitUntil(
-    caches.open(tomoriru_setsuna).then(function(cache) {
-      return cache.addAll(tomoriru_setsuna)
-    })
-  )
-})
+// if(!hascache){
+if(cache != tomoriru_setsuna){
+  self.addEventListener('install',function(e) {
+    e.waitUntil(
+      caches.open(tomoriru_setsuna).then(function(cache) {
+        return cache.addAll(tomoriru_setsuna)
+      })
+
+    )
+  })
+}
 
 self.addEventListener('fetch', function(event) {
   event.respondwith(
