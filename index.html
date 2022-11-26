@@ -1451,12 +1451,117 @@
       //キーボード　使ってないのはコメントアウト必須
       // document.addEventListener("keypress",keypressEvent)
       document.addEventListener("keydown",keydownEvent)
-      document.addEventListener("keyup",keyupEvent)
+      // document.addEventListener("keyup",keyupEvent)
 
       function keydownEvent(e){
 
         if(e.ctrlKey === true){
-          ctrl_tf = true
+          // ctrl_tf = true
+
+          //elseのが速い
+          if(e.key === "i"){
+            e.key = null
+            e.returnValue = false
+            if(select_line_save == 1){
+              onButton_u1()
+            }else if(select_line_save == 2){
+              onButton_u2()
+            }else if(select_line_save == 3){
+              onButton_u3()
+            }else if(select_line_save == 4){
+              onButton_u4()
+            }
+
+          }else if(e.key === "k"){
+            e.key = null
+            e.returnValue = false
+            if(select_line_save == 1){
+              onButton_d1()
+            }else if(select_line_save == 2){
+              onButton_d2()
+            }else if(select_line_save == 3){
+              onButton_d3()
+            }else if(select_line_save ==4){
+              onButton_d4()
+            }
+
+          }else if(e.key === "j"){
+            e.key = null
+            e.returnValue = false
+            if(select_line_save == 1){
+              onButton_l1()
+            }else if(select_line_save == 2){
+              onButton_l2()
+            }else if(select_line_save == 3){
+              onButton_l3()
+            }else if(select_line_save == 4){
+              onButton_l4()
+            }
+
+          }else if(e.key === "l"){
+            e.key = null
+            e.returnValue = false
+            if(select_line_save == 1){
+              onButton_r1()
+            }else if(select_line_save == 2){
+              onButton_r2()
+            }else if(select_line_save == 3){
+              onButton_r3()
+            }else if(select_line_save == 4){
+              onButton_r4()
+            }
+
+          }else if(e.key === "g"){
+            e.key = null
+            e.returnValue = false
+            if(select_line_save == 1){
+              onButton_g1()
+            }else if(select_line_save == 2){
+              onButton_g2()
+            }else if(select_line_save == 3){
+              onButton_g3()
+            }else if(select_line_save == 4){
+              onButton_g4()
+            }
+
+          }else if(e.key === "["){
+            e.key = null
+            e.returnValue = false
+            onButton_kakko1()
+
+          }else if(e.key === "Enter"){
+            e.key = null
+            e.returnValue = false
+            onButton_w1()
+
+          }else if(e.key === "Backspace"){
+            e.key = null
+            e.returnValue = false
+            onButton_back()
+
+          }
+
+
+        }else if(e.key === "F1"){
+          e.keyCode = null
+          e.returnValue = false
+          onButton_face1()
+        }else if(e.key === "F2"){
+          e.keyCode = null
+          e.returnValue = false
+          onButton_face2()
+        }else if(e.key === "F3"){
+          e.keyCode = null
+          e.returnValue = false
+          onButton_face3()
+        }else if(e.key === "F4"){
+          e.keyCode = null
+          e.returnValue = false
+          onButton_face4()
+        }else if(e.key === "F5"){
+          e.keyCode = null
+          e.returnValue = false
+          onButton_reset()
         }
 
         //非推奨
@@ -1486,121 +1591,7 @@
         //       onButton_reset()
         //       break
         //   }
-
-        if(e.key === "F1"){
-          e.keyCode = null
-          e.returnValue = false
-          onButton_face1()
-        }
-
-        if(e.key === "F2"){
-          e.keyCode = null
-          e.returnValue = false
-          onButton_face2()
-        }
-
-        if(e.key === "F3"){
-          e.keyCode = null
-          e.returnValue = false
-          onButton_face3()
-        }
-
-        if(e.key === "F4"){
-          e.keyCode = null
-          e.returnValue = false
-          onButton_face4()
-        }
-
-        if(e.key === "F5"){
-          e.keyCode = null
-          e.returnValue = false
-          onButton_reset()
-        }
-
-        //冗長だけど面倒くさいからそのまま
-        if(e.key === "i" && ctrl_tf == true){
-        // }else if(e.key === "i" && ctrl_tf == true){
-          e.key = null
-          e.returnValue = false
-          if(select_line_save == 1){
-            onButton_u1()
-          }else if(select_line_save == 2){
-            onButton_u2()
-          }else if(select_line_save == 3){
-            onButton_u3()
-          }else if(select_line_save == 4){
-            onButton_u4()
-          }
-
-        }else if(e.key === "k" && ctrl_tf == true){
-          e.key = null
-          e.returnValue = false
-          if(select_line_save == 1){
-            onButton_d1()
-          }else if(select_line_save == 2){
-            onButton_d2()
-          }else if(select_line_save == 3){
-            onButton_d3()
-          }else if(select_line_save ==4){
-            onButton_d4()
-          }
-
-        }else if(e.key === "j" && ctrl_tf == true){
-          e.key = null
-          e.returnValue = false
-          if(select_line_save == 1){
-            onButton_l1()
-          }else if(select_line_save == 2){
-            onButton_l2()
-          }else if(select_line_save == 3){
-            onButton_l3()
-          }else if(select_line_save == 4){
-            onButton_l4()
-          }
-
-        }else if(e.key === "l" && ctrl_tf == true){
-          e.key = null
-          e.returnValue = false
-          if(select_line_save == 1){
-            onButton_r1()
-          }else if(select_line_save == 2){
-            onButton_r2()
-          }else if(select_line_save == 3){
-            onButton_r3()
-          }else if(select_line_save == 4){
-            onButton_r4()
-          }
-
-        }else if(e.key === "g" && ctrl_tf == true){
-          e.key = null
-          e.returnValue = false
-          if(select_line_save == 1){
-            onButton_g1()
-          }else if(select_line_save == 2){
-            onButton_g2()
-          }else if(select_line_save == 3){
-            onButton_g3()
-          }else if(select_line_save == 4){
-            onButton_g4()
-          }
-
-        }else if(e.key === "[" && ctrl_tf == true){
-          e.key = null
-          e.returnValue = false
-          onButton_kakko1()
-
-        }else if(e.key === "Enter" && ctrl_tf == true){
-          e.key = null
-          e.returnValue = false
-          onButton_w1()
-
-        }else if(e.key === "Backspace" && ctrl_tf == true){
-          e.key = null
-          e.returnValue = false
-          onButton_back()
-
-        }
-        
+               
         return false
       }
 
@@ -1611,14 +1602,14 @@
       // }
 
 
-      function keyupEvent(e){
+      // function keyupEvent(e){
 
-      if(e.ctrlKey === true){
-        ctrl_tf = false
-      }
+      // if(e.ctrlKey === true){
+      //   ctrl_tf = false
+      // }
 
-      return false
-      }
+      // return false
+      // }
 
 
       //初期値変更
