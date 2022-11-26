@@ -1422,8 +1422,8 @@
             arr[row] = Array()
             for(var col=range.s.c; col<=range.e.c; col++){
               cn = XLSX.utils.encode_cell({r:row, c:col})//セル変換
-              if(sheet1[cn] != undefined){
-                cell_str = sheet1[cn].w              
+              if(sheet[cn] != undefined){
+                cell_str = sheet[cn].w              
               }else{
                 cell_str = ""
               }
