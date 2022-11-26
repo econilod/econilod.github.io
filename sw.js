@@ -22,7 +22,7 @@ self.addEventListener('fetch', function(event) {
     caches.match(event.request).then(function(response) {
       
       //if(cache != tomoriru_setsuna){
-      if(navigator.onLine != false){
+      if(navigator.onLine != false || cache != tomoriru_setsuna){
         return caches.open(tomoriru_setsuna).then(function(cache){
           return cache.match(event.request)
         })
