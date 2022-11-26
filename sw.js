@@ -5,7 +5,8 @@ var tomoriru_setsuna = [
   "/icon-384x384.png",
   "/icon-512x512.png",
   "/manifest.json",
-  "/xlsx.full.min.js"
+  "/xlsx.full.min.js",
+  "/QR_SSEd.png"
   // "https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"
 ]
 
