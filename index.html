@@ -1099,6 +1099,7 @@
         
         //記入欄　初期化
         document.forms.id_form1.id_textbox1.value = ""
+        document.getElementById("id_textbox1").style.backgroundColor = "#ffffff"
         
         //フォーカス
         cleave_count()
@@ -1209,7 +1210,6 @@
 
       //テキスト入力時　追記（入力）用
       function onInput_textbox1(){
-        tf = true
         chk_input = document.getElementById("id_textbox1").value
 
         for(i=call_r_offset; i<=call_data.length-1; i++){//呼ばれ方走査
