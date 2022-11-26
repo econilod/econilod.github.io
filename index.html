@@ -144,7 +144,7 @@
     <br>
     
     <!-- 読込 -->
-    <input id = id_read type = "file" style = "font-size: 200%; width:700px; height:100px; " onclick="onButton_read();" />
+    <input id = id_read type = "file" style = "font-size: 200%; width:700px; height:100px;" accept=".xlsx" onclick="onButton_read();" />
 
     <br>
     <br>
@@ -433,12 +433,6 @@
         ["","","夏美","夏美","すみれ","メイ","可可","","","","","","","","","","","","","","",""]
       ]
 
-
-      // var  filebox = document,getElementById("id_read")
-      // import *as xlsx from "xlsx"
-      // const book = xlsx.readFile("test_cha_data.xlsx")
-      // const sheet1 = book.Sheets["name"]
-      // const sheet2 = book.Sheets["call"] 
 
       //格納データ　オフセット
       face_offset = 11 //-1グループ名
@@ -1408,54 +1402,44 @@
 
 
       //ファイル      
-      document.getElementById("id_read").addEventListener("change",function(e) {
-        var pick_f = document.getElementById("id_read").files
-        
-        var f = files[0]
-        var reader = FileReader()
+      async function handleFile(e){
+        var file = e.target.files[0]   
+        var data = await file.arrayBuffer()
+        var workbook = XLSX.read(data)
 
-        var X = XLSX
+        var sheet1 = workbook.Sheets["name"]
+        var sheet2 = workbook.Sheets["call"]
 
-        reader.onload = function(e){
-          var data = e.target.result
-          var arr = fixdata(data)
-          
+        // console.log(range.e.r.toString() + range.e.c.toString())
+        function sheet_to_arr(sheet){
+          var cn = ""
+          var cell_str =""
+          var arr = Array()
+          var range = XLSX.utils.decode_range(sheet["!ref"])
 
-          var wb
-          wb = X.read(btoa(arr),{
-            type: "base64",
-            cellDates: true,
-          })
+          for(var row=range.s.r; row<=range.e.r; row++){
+            arr[row] = Array()
+            for(var col=range.s.c; col<=range.e.c; col++){
+              cn = XLSX.utils.encode_cell({r:row, c:col})//セル変換
+              if(sheet1[cn] != undefined){
+                cell_str = sheet1[cn].w              
+              }else{
+                cell_str = ""
+              }
+              arr[row][col] = cell_str
+              // console.log(arr[row][col])
+            }
+          }
 
-          //json
-          var output = ""
-          output = to_json(wb)
-          alert(output)
+          return arr
         }
 
-        reader.readAsArrayBuffer(f)
-      })
-      
-      function fixdata(data){
-        var o = ""
-        var l = 0
-        var w = 0
+        cha_data = sheet_to_arr(sheet1)
+        call_data = sheet_to_arr(sheet2)
 
-        for (; l < data.byteLength/w; l++) o += String.fromCharCode.apply(null, Uint8Array(data.slice(l*w,l*w+w)))
-        o += String.fromCharCode.apply(null, Uint8Array(data.slice(l*w,l*w+w)))
-        return o
+        await ini_fun()              
       }
-
-      function to_json(workbook){
-        var result = {}
-        workbook.SheetNames.forEach(function(sheetName){
-          var roa = X.utiles.sheet_to_json(workbook.Sheets[sheetName],
-          {
-            raw: true,
-          })
-        })
-        return result
-      }
+      document.getElementById("id_read").addEventListener("change", handleFile, false)
 
 
       //キーボード　使ってないのはコメントアウト必須
@@ -1632,13 +1616,60 @@
 
 
       //初期値変更
-      onButton_g2()
-      onButton_g3()
-      onButton_g3()
-      onButton_g4()
-      onButton_g4()
-      onButton_g4()
-      onButton_reset()
+
+      function ini_fun(){
+
+        group_num1 = cha_offset
+        face_num1 = face_offset
+        cha_num1 = cha_offset 
+
+        group_num2 = cha_offset
+        face_num2 = face_offset
+        cha_num2 = cha_offset 
+
+        group_num3 = cha_offset
+        face_num3 = face_offset
+        cha_num3 = cha_offset 
+
+        group_num4 = cha_offset
+        face_num4 = face_offset
+        cha_num4 = cha_offset 
+
+        group_name1 = cha_data[cha_offset][face_offset-1]
+        face1 = cha_data[cha_offset][face_offset]
+
+        group_name2 = cha_data[cha_offset][face_offset-1]
+        face2 = cha_data[cha_offset][face_offset]
+
+        group_name3 = cha_data[cha_offset][face_offset-1]
+        face3 = cha_data[cha_offset][face_offset]
+
+        group_name4 = cha_data[cha_offset][face_offset-1]
+        face4 = cha_data[cha_offset][face_offset]
+
+        document.getElementById("id_btn_group1").value = group_name1
+        document.getElementById("id_btn_group2").value = group_name2
+        document.getElementById("id_btn_group3").value = group_name3
+        document.getElementById("id_btn_group4").value = group_name4
+
+        document.getElementById("id_btn_face1").value = face1
+        document.getElementById("id_btn_face2").value = face2
+        document.getElementById("id_btn_face3").value = face3
+        document.getElementById("id_btn_face4").value = face4
+
+        onButton_g2()
+        
+        onButton_g3()
+        onButton_g3()
+
+        onButton_g4()
+        onButton_g4()
+        onButton_g4()
+
+        onButton_reset()
+      }
+
+      ini_fun()
 
 
     </script>
