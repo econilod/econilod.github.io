@@ -14,6 +14,7 @@
   }
   textarea{
     font-family: inherit;
+    overflow-anchor: none;
   }
 </style>
 
@@ -149,6 +150,10 @@
     <input id = id_read type = "file" style = "font-size: 200%; width:700px; height:100px;" accept=".xlsx" onclick="onButton_read();" />
 
     <br><br>
+
+    <input type="button" id="id_btm_pm" value="Play mode" style="font-size: 200%; width:auto; height: 80px" onclick="onButton_pm();"/>
+
+    <br><br>
     
     <a href="./new_cha_data.xlsx" style = "font-size: 200%;">キャラクターデータ雛形（xlsx）</a>   
 
@@ -175,7 +180,14 @@
 
 
     <br><br><br>
-    <img src="icon-512x512.png" width="100%">
+    <img src="play_mode_damy.png" id="id_pic" width="100%" style="">
+    <textarea id="id_play_txt" style="font-size: 300%; width: 80%; height:15%; position: relative; left:0%; top:-15%" type="text" disabled></textarea>
+    
+    <br>
+    <input type="button" id="id_btm_pm_up" value="▲" style="font-size: 200%; width: 80px;; height: 80px" onclick="onButton_pm_up();"/>
+    <br>
+    <input type="button" id="id_btm_pm_down" value="▼" style="font-size: 200%; width: 80px;; height: 80px" onclick="onButton_pm_down();"/>
+
 
     <!-- <a href="./manual.html" style = "font-size: 200%;">マニュアル</a>    -->
 
@@ -199,6 +211,9 @@
 
       var c_word = "       <<*ここで*>>⊂⎛(cV„Ò ᴗ ÓV⎞⊃<<*分割！*>>"
       var c_count = 0
+
+      var pm_arr = []//play mode用
+      var pm_num = 0
 
       select_line_save = 0//選択ラインの記憶用　キャラ選択
 
@@ -1432,6 +1447,41 @@
           }
         }
         document.getElementById("id_c_row").placeholder = "直前の分割場所から　" + c_count.toString() + "行"
+      }
+
+
+      //プレイモード
+      function onButton_pm(){
+        var pm_tmp_str = document.getElementById("id_text_box").value
+
+        if(pm_tmp_str != ""){
+          pm_num = 0
+          var bottom = document.body.scrollHeight - window.innerHeight
+          window.scroll(0,bottom)
+          var pm_arr_tmp = pm_tmp_str.split("\n")
+          pm_arr = []
+
+          for(i=0; i<=pm_arr_tmp.length-1; i++){
+            if(pm_arr_tmp[i] != "" && pm_arr_tmp[i] != c_word){
+              pm_arr.push(pm_arr_tmp[i])
+            }
+          }
+          
+          pm_num = 0
+          document.getElementById("id_play_txt").value = pm_arr[0]
+          // document.getElementById("id_play_txt").focus()
+        }
+        
+      }
+
+      function onButton_pm_up(){
+        if(pm_num > 0) pm_num -= 1
+        document.getElementById("id_play_txt").value = pm_arr[pm_num]
+      }
+
+      function onButton_pm_down(){
+        if(pm_num < pm_arr.length-1) pm_num += 1
+        document.getElementById("id_play_txt").value = pm_arr[pm_num]        
       }
 
 
