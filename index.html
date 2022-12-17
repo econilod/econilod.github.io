@@ -147,17 +147,11 @@
     <br><br>
     
     <!-- 読込 -->
-    <input id = id_read type = "file" style = "font-size: 200%; width:700px; height:100px;" accept=".xlsx" onclick="onButton_read();" />
-
-    <br><br>
-
     <input type="button" id="id_btm_pm" value="Play mode" style="font-size: 200%; width:auto; height: 80px" onclick="onButton_pm();"/>
 
-    <br><br>
-    
-    <a href="./new_cha_data.xlsx" style = "font-size: 200%;">キャラクターデータ雛形（xlsx）</a>   
+    <input id = id_read type = "file" style = "font-size: 200%; width:700px; height:100px;" accept=".xlsx" onclick="onButton_read();" />
 
-    <br><br>
+    <br>
 
     <p>
       キーボードショートカット一覧<br>
@@ -171,23 +165,38 @@
       ctrl + l         ： 情、表記ゆれ変更、順方向<br>
       ctrl + [         ： 括弧の変更<br>
       ctrl + BackSpace ： 一つ前に戻る<br>
+      ctrl + @         ： 分割点の挿入<br>
     </p>
   
-    <br>
+    <br><br>
+    
+    <a href="./new_cha_data.xlsx" style = "font-size: 200%;">キャラクターデータ雛形（xlsx）</a>   
 
+    <br><br>
+    
     <p>ここのQRコード</p>
     <img src="QR_SSEd.png">
 
-
     <br><br><br>
-    <img src="play_mode_damy.png" id="id_pic" width="100%" style="">
-    <textarea id="id_play_txt" style="font-size: 300%; width: 80%; height:15%; position: relative; left:0%; top:-15%" type="text" disabled></textarea>
-    
-    <br>
-    <input type="button" id="id_btm_pm_up" value="▲" style="font-size: 200%; width: 80px;; height: 80px" onclick="onButton_pm_up();"/>
-    <br>
-    <input type="button" id="id_btm_pm_down" value="▼" style="font-size: 200%; width: 80px;; height: 80px" onclick="onButton_pm_down();"/>
+    <!-- <input id = id_img_read type = "file" style = "font-size: 200%; width:700px; height:100px;" onclick="onButton_img_read();" />
+     -->
+    <img src="play_mode_damy.png" id="id_pic" height="100%" style="position: relative; bottom: -45%">
 
+    <!-- <form name "pm_ms_s" id="id_pm_ms_s" action=""> -->
+      <form name "pm_b1" id="id_pm_b1" style="position: relative; bottom:-25%; left:90%;"> 
+        <input type="button" id="id_btm_pm_up" value="▲" style="font-size: 200%; width: 10%; height: 10%;" onclick="onButton_pm_up();"/>
+      </form>
+      <!-- <br> -->
+      <form name "pm_b2" id="id_pm_b2" style="position: relative; bottom:-25%; left:90%;">
+        <input type="button" id="id_btm_pm_down" value="▼" style="font-size: 200%; width: 10%; height: 10%;" onclick="onButton_pm_down();"/>
+      </form>
+    <!-- </form> -->
+
+    <!-- <form name "pm_ms" id="id_pm_ms" action=""> -->
+      <textarea id="id_play_txt" style="font-size: 200%; width: 86%; height:25%; position: relative; left:2%; bottom:0%" type="text" disabled></textarea>
+      
+      
+    <!-- </form> -->
 
     <!-- <a href="./manual.html" style = "font-size: 200%;">マニュアル</a>    -->
 
@@ -1470,6 +1479,9 @@
           pm_num = 0
           document.getElementById("id_play_txt").value = pm_arr[0]
           // document.getElementById("id_play_txt").focus()
+
+          //画像
+          // id_pic.src = pic_reader.result
         }
         
       }
@@ -1534,6 +1546,10 @@
         await ini_fun()              
       }
       document.getElementById("id_read").addEventListener("change", handleFile, false)
+
+
+
+      
 
 
       //キーボード　使ってないのはコメントアウト必須
@@ -1626,6 +1642,11 @@
             e.key = null
             e.returnValue = false
             onButton_back()
+
+          }else if(e.key === "@"){
+            e.key = null
+            e.returnValue = false
+            onButton_c_point()
 
           }
 
