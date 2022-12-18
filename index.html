@@ -147,11 +147,13 @@
     <br><br>
     
     <!-- 読込 -->
-    <input type="button" id="id_btm_pm" value="Play mode" style="font-size: 200%; width:auto; height: 80px" onclick="onButton_pm();"/>
-
-    <input id = id_read type = "file" style = "font-size: 200%; width:700px; height:100px;" accept=".xlsx" onclick="onButton_read();" />
+    <p>キャラクターデータ読込</p>
+     <input id = id_read type = "file" style = "font-size: 200%; width:700px; height:100px;" accept=".xlsx" onclick="onButton_read();" />
 
     <br>
+
+    <p>Play mode（画像選択）</p>
+    <input type="file" id="id_pm" value="Play mode" style="font-size: 200%; width:auto; height: 80px" onclick="onButton_pm();"/>
 
     <p>
       キーボードショートカット一覧<br>
@@ -183,11 +185,11 @@
     <img src="play_mode_damy.png" id="id_pic" width="100%" style="position: relative; bottom: -45%">
 
     <!-- <form name "pm_ms_s" id="id_pm_ms_s" action=""> -->
-      <form name "pm_b1" id="id_pm_b1" style="position: relative; bottom:-25%; left:90%;"> 
-        <input type="button" id="id_btm_pm_up" value="▲" style="font-size: 150%; width: 10%; height: 12%; vertical-align: middle; background-color: rgba(256,256,256,0.5);" onclick="onButton_pm_up();"/>
+      <form name "pm_b1" id="id_pm_b1" style="position: relative; bottom:-25%; left:90%; vertical-align: middle;"> 
+        <input type="button" id="id_btm_pm_up" value="▲" style="font-size: 150%; width: 10%; height: 12%; background-color: rgba(256,256,256,0.5);" onclick="onButton_pm_up();"/>
       </form>
       <!-- <br> -->
-      <form name "pm_b2" id="id_pm_b2" style="position: relative; bottom:-25%; left:90%;">
+      <form name "pm_b2" id="id_pm_b2" style="position: relative; bottom:-25%; left:90%; vertical-align: middle;">
         <input type="button" id="id_btm_pm_down" value="▼" style="font-size: 150%; width: 10%; height: 12%; vertical-align: middle; background-color: rgba(256,256,256,0.5);" onclick="onButton_pm_down();"/>
       </form>
     <!-- </form> -->
@@ -1460,10 +1462,99 @@
 
 
       //プレイモード
-      function onButton_pm(){
-        var pm_tmp_str = document.getElementById("id_text_box").value
+      // function onButton_pm(){
+      //   var pm_tmp_str = document.getElementById("id_text_box").value
 
-        if(pm_tmp_str != ""){
+      //   if(pm_tmp_str != ""){
+      //     pm_num = 0
+      //     var bottom = document.body.scrollHeight - window.innerHeight
+      //     window.scroll(0,bottom)
+      //     var pm_arr_tmp = pm_tmp_str.split("\n")
+      //     pm_arr = []
+
+      //     for(i=0; i<=pm_arr_tmp.length-1; i++){
+      //       if(pm_arr_tmp[i] != "" && pm_arr_tmp[i] != c_word){
+      //         pm_arr.push(pm_arr_tmp[i])
+      //       }
+      //     }
+          
+      //     pm_num = 0
+      //     document.getElementById("id_play_txt").value = pm_arr[0]
+      //     // document.getElementById("id_play_txt").focus()
+
+      //     //画像
+      //     // id_pic.src = pic_reader.result
+      //   }
+        
+      // }
+
+      //プレイモード　戻る
+      function onButton_pm_up(){
+        if(pm_num > 0) pm_num -= 1
+        document.getElementById("id_play_txt").value = pm_arr[pm_num]
+      }
+
+      //プレイモード　進む
+      function onButton_pm_down(){
+        if(pm_num < pm_arr.length-1) pm_num += 1
+        document.getElementById("id_play_txt").value = pm_arr[pm_num]        
+      }
+
+
+      //ファイル      
+      async function handleFile(e){
+        var file = e.target.files[0]  
+        var file_type = file.name.split(".").pop()
+        // console.log(file_type)
+
+        var data = await file.arrayBuffer()
+
+        if(file_type == "xlsx"){
+          var workbook = XLSX.read(data)
+
+          var sheet1 = workbook.Sheets["name"]
+          var sheet2 = workbook.Sheets["call"]
+
+          // console.log(range.e.r.toString() + range.e.c.toString())
+          function sheet_to_arr(sheet){
+            var cn = ""
+            var cell_str =""
+            var arr = Array()
+            var range = XLSX.utils.decode_range(sheet["!ref"])
+
+            // console.log(range.e.r)
+
+            for(var row=range.s.r; row<=range.e.r; row++){
+              arr[row] = Array()
+              for(var col=range.s.c; col<=range.e.c; col++){
+                cn = XLSX.utils.encode_cell({r:row, c:col})//セル変換
+                if(sheet[cn] != undefined){
+                  cell_str = sheet[cn].w              
+                }else{
+                  cell_str = ""
+                }
+                arr[row][col] = cell_str
+                // console.log(arr[row][col])
+              }
+            }
+
+            return arr
+          }
+
+          cha_data = []
+          call_data = []
+          
+          // cha_data.length = 0
+          // call_data.length = 0
+
+          cha_data = sheet_to_arr(sheet1)
+          call_data = sheet_to_arr(sheet2)
+
+          // console.log(cha_data)
+
+          await ini_fun()
+        }else{//プレイモード
+          var pm_tmp_str = document.getElementById("id_text_box").value
           pm_num = 0
           var bottom = document.body.scrollHeight - window.innerHeight
           window.scroll(0,bottom)
@@ -1481,74 +1572,15 @@
           // document.getElementById("id_play_txt").focus()
 
           //画像
-          // id_pic.src = pic_reader.result
+          document.getElementById("id_pic").src = window.URL.createObjectURL(file)
         }
-        
-      }
-
-      function onButton_pm_up(){
-        if(pm_num > 0) pm_num -= 1
-        document.getElementById("id_play_txt").value = pm_arr[pm_num]
-      }
-
-      function onButton_pm_down(){
-        if(pm_num < pm_arr.length-1) pm_num += 1
-        document.getElementById("id_play_txt").value = pm_arr[pm_num]        
-      }
-
-
-      //ファイル      
-      async function handleFile(e){
-        var file = e.target.files[0]   
-        var data = await file.arrayBuffer()
-        var workbook = XLSX.read(data)
-
-        var sheet1 = workbook.Sheets["name"]
-        var sheet2 = workbook.Sheets["call"]
-
-        // console.log(range.e.r.toString() + range.e.c.toString())
-        function sheet_to_arr(sheet){
-          var cn = ""
-          var cell_str =""
-          var arr = Array()
-          var range = XLSX.utils.decode_range(sheet["!ref"])
-
-          // console.log(range.e.r)
-
-          for(var row=range.s.r; row<=range.e.r; row++){
-            arr[row] = Array()
-            for(var col=range.s.c; col<=range.e.c; col++){
-              cn = XLSX.utils.encode_cell({r:row, c:col})//セル変換
-              if(sheet[cn] != undefined){
-                cell_str = sheet[cn].w              
-              }else{
-                cell_str = ""
-              }
-              arr[row][col] = cell_str
-              // console.log(arr[row][col])
-            }
-          }
-
-          return arr
-        }
-
-        cha_data = []
-        call_data = []
-        
-        // cha_data.length = 0
-        // call_data.length = 0
-
-        cha_data = sheet_to_arr(sheet1)
-        call_data = sheet_to_arr(sheet2)
-
-        // console.log(cha_data)
-
-        await ini_fun()              
       }
       document.getElementById("id_read").addEventListener("change", handleFile, false)
 
 
-
+      //play mode
+      //画像の読込
+      document.getElementById("id_pm").addEventListener("change",handleFile,false)
       
 
 
