@@ -182,15 +182,17 @@
     <br><br><br>
     <!-- <input id = id_img_read type = "file" style = "font-size: 200%; width:700px; height:100px;" onclick="onButton_img_read();" />
      -->
-    <img src="play_mode_damy.png" id="id_pic" width="100%" style="position: relative; bottom: -45%">
+    <img src="play_mode_damy.png" id="id_pic" width=window.innerWidth style="position: relative; bottom: -45%">
 
-    <!-- <form name "pm_ms_s" id="id_pm_ms_s" action=""> -->
-      <form name "pm_b1" id="id_pm_b1" style="position: relative; bottom:-25%; left:90%; vertical-align: middle;"> 
-        <input type="button" id="id_btm_pm_up" value="▲" style="font-size: 150%; width: 10%; height: 12%; background-color: rgba(256,256,256,0.5);" onclick="onButton_pm_up();"/>
+    <!-- <form name "pm_ms_s" id="id_pm_ms_s" action="" style="vertical-align: middle;"> -->
+      <form name "pm_b1" id="id_pm_b1" style="position: relative; bottom:-25%; left:90%;"> 
+        <input type="button" id="id_btm_pm_up" value="▲" style="font-size: 150%; width: 10%; height: 11.5%; background-color: rgba(256,256,256,0.5);" onclick="onButton_pm_up();"/>
+        <!-- <input type="button" id="id_btm_pm_up" value="▲" style="font-size: 150%; width: 10%; height: 11.5%; vertical-align: middle; background-color: rgba(256,256,256,0.5);" onclick="onButton_pm_up();"/> -->
       </form>
       <!-- <br> -->
-      <form name "pm_b2" id="id_pm_b2" style="position: relative; bottom:-25%; left:90%; vertical-align: middle;">
-        <input type="button" id="id_btm_pm_down" value="▼" style="font-size: 150%; width: 10%; height: 12%; vertical-align: middle; background-color: rgba(256,256,256,0.5);" onclick="onButton_pm_down();"/>
+      <form name "pm_b2" id="id_pm_b2" style="position: relative; bottom:-25%; left:90%;">
+        <input type="button" id="id_btm_pm_down" value="▼" style="font-size: 150%; width: 10%; height: 11.5%; background-color: rgba(256,256,256,0.5);" onclick="onButton_pm_down();"/>
+        <!-- <input type="button" id="id_btm_pm_down" value="▼" style="font-size: 150%; width: 10%; height: 11.5%; vertical-align: middle; background-color: rgba(256,256,256,0.5);" onclick="onButton_pm_down();"/> -->
       </form>
     <!-- </form> -->
 
@@ -217,6 +219,8 @@
         navigator.serviceWorker.register("sw.js");
       }
       })
+
+      document.getElementById("id_pic").style.width = window.innerWidth
 
       var ctrl_tf = false
 
