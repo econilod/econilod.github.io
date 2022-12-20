@@ -220,7 +220,10 @@
       }
       })
 
-      document.getElementById("id_pic").style.width = 1000 + "px"
+      window.width = clientWidth
+      document.getElementById("id_pic").style.width = clientWidth
+      // window.width = 1000 + "px"
+      // document.getElementById("id_pic").style.width = 1000 + "px"
       // document.getElementById("id_pic").style.width = screen.Width
 
       var ctrl_tf = false
